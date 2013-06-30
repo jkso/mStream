@@ -72,6 +72,30 @@ $(document).ready(function(){
 		});
 	});
 
+//when you click 'add direcotry', add entire directory to the playlist
+	$("#addall").on('click', function() {
+		//make an array of all the mp3 files in the curent directory
+		var elems = document.getElementsByClassName('filez');
+   		var arr = jQuery.makeArray(elems);
+
+   		//var with the current directory
+		var thedir=$('#currentdir').val();
+
+		//loop throug harray and add eah file to the playlist
+		$.each( arr, function() {
+			var addfile=this.innerHTML;
+			var mp3location= thedir+addfile
+
+			// add it to the playlist
+			myPlaylist.add({
+				title: addfile,
+				//artist:"The Stark Palace",
+				mp3: mp3location
+				//poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+			});
+		});
+	});
+
 //when you click on a directory, go to that directory
 	$("#filelist").on('click', 'div.dirz', function() {
 		//get the html of that class
@@ -179,6 +203,9 @@ $(document).ready(function(){
 	<input type="hidden" id="currentdirlong"></input>
 
 
+	<div class='controls' id='controls'>
+		<div id='addall'>add directory</div>
+	</div>
 
 
 
