@@ -1,3 +1,15 @@
+<?php
+session_start();
+if($_SESSION["login"]==1){
+
+}
+else{
+	header("Location: index.php");
+	exit;
+}
+
+?>
+
 <head>
 
 <link rel="stylesheet" type="text/css" href="/mStream/css/playexplore.css" />
@@ -25,7 +37,7 @@ $(document).ready(function(){
 
 
 
-	//initialize jPlayer. This needs to be done before doing naything else
+//initialize jPlayer. This needs to be done before doing naything else
 	var myPlaylist = new jPlayerPlaylist({
 			jPlayer: "#jquery_jplayer_N",
 			cssSelectorAncestor: "#jp_container_N"
@@ -193,7 +205,6 @@ $(document).ready(function(){
 <body>
 
 
-
 	<div class='masterlist' id='filelist'>
 		<div class="filez">beanz</div>
 	</div>
@@ -264,7 +275,4 @@ $(document).ready(function(){
 		</div>
 		</div>
 
-
 </body>
-
-
