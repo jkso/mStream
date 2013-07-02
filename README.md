@@ -7,10 +7,13 @@ mStream is a small script that you can use to browse a directory for mp3 files. 
 SETUP
 =======
 
+-make a folder in your webroot called 'mstream'
+-place files in said folder
+
 There's three variables you need to edit before this will work.  Here's what you need to do:
 
 -Open up playexplore.php
--Edit lines 19, 21, 23
+-Edit lines 19, 21, 23 (look at the comments by these lines for more information)
 -Save and enjoy
 
 NOTE: You need to have your music in your webroot.  I used a symlink to make this easy.

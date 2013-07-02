@@ -12,15 +12,15 @@ else{
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="/mStream/css/playexplore.css" />
+<link rel="stylesheet" type="text/css" href="/mstream/css/playexplore.css" />
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 <!-- The following are all for jplayer -->
-<link href="/CSS3MusicList/jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
-<link href="/CSS3MusicList/jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/CSS3MusicList/jPlayer24/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="/CSS3MusicList/jPlayer24/add-on/jplayer.playlist.min.js"></script>
+<link href="/mstream/jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
+<link href="/mstream/jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/mstream/jPlayer24/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="/mstream/jPlayer24/add-on/jplayer.playlist.min.js"></script>
 
 
 <script type="text/javascript">
@@ -28,9 +28,9 @@ $(document).ready(function(){
 //this sets up the first dir you see when you long on.   
 	//EDIT THESE VALUES:
 		//'startdir' is the location of the initial directory from your computer's root.  PHP needs this
-	var startdir = '\/Applications\/MAMP\/htdocs\/CSS3MusicList\/audiofiles\/';
+	var startdir = '/Applications/MAMP/htdocs/audiofiles/';
 		//'startdirstripped' is the location of the initial directory from your server's webroot
-	var startdirstripped = '\/CSS3MusicList\/audiofiles\/';
+	var startdirstripped = '/audiofiles/';
 		//this is as far as you want the user going back.  A value of '/' means you want your user going back as far as your webroot
 	var rootdir='/';
 	//DONE WITH EDITTING
@@ -161,7 +161,7 @@ $(document).ready(function(){
 
 //send a new directory to be parsed.
 	function senddir(dirr){
-		$.post('/filestream/dirparser.php', { dir: dirr}, function(response) {
+		$.post('/mstream/dirparser.php', { dir: dirr}, function(response) {
 		    //console.log("Response: "+response);
 		    //hand this data off to be printed on the page
 		    printdir(response);
