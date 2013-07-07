@@ -15,6 +15,7 @@ else{
 <link rel="stylesheet" type="text/css" href="/mstream/css/playexplore.css" />
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 <!-- The following are all for jplayer -->
 <link href="/mstream/jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
@@ -157,8 +158,8 @@ $(document).ready(function(){
 		}
 		});
 
-
-$("#clear").click(function() {
+//clear the playlist
+	$("#clear").click(function() {
 		myPlaylist.setPlaylist([]);
 	});
 
@@ -230,7 +231,7 @@ $("#clear").click(function() {
 
 	<div id="jp_container_N" class="jp-video jp-video-270p">
 		<div class="jp-type-playlist">
-			<div id="jquery_jplayer_N" class="jp-jplayer" style="width: 480px; height: 270px;"><img id="jp_poster_0" src="http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png" style="width: 480px; height: 270px; display: inline;"><audio id="jp_audio_0" preload="metadata" src="http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"></audio><video id="jp_video_0" preload="metadata" style="width: 0px; height: 0px;"></video></div>
+			<div id="jquery_jplayer_N" class="jp-jplayer" style="width: 480px; height: 270px;"><video id="jp_video_0" preload="metadata" style="width: 0px; height: 0px;"></video></div>
 			<div class="jp-gui" style="">
 				<div class="jp-video-play" style="display: none;">
 					<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
@@ -242,7 +243,7 @@ $("#clear").click(function() {
 						</div>
 					</div>
 					<div class="jp-current-time">00:00</div>
-					<div class="jp-duration">04:27</div>
+					<div class="jp-duration">06:66</div>
 					<div class="jp-controls-holder">
 						<ul class="jp-controls">
 							<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
@@ -268,13 +269,13 @@ $("#clear").click(function() {
 					</div>
 					<div class="jp-title" style="display: none;">
 						<ul>
-							<li>Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></li>
+							<li>If you see this<span class="jp-artist">Something went wrong... Sorry</span></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="jp-playlist">
-				<ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="1">Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></a></div></li></ul>
+				<ul style="display: block;" class='sortable'><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="1">Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></a></div></li></ul>
 			</div>
 			<div class="jp-no-solution" style="display: none;">
 				<span>Update Required</span>
