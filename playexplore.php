@@ -84,7 +84,7 @@ $(document).ready(function(){
 		});
 	});
 
-//when you click 'add direcotry', add entire directory to the playlist
+//when you click 'add directory', add entire directory to the playlist
 	$("#addall").on('click', function() {
 		//make an array of all the mp3 files in the curent directory
 		var elems = document.getElementsByClassName('filez');
@@ -158,6 +158,12 @@ $(document).ready(function(){
 		});
 
 
+$("#clear").click(function() {
+		myPlaylist.setPlaylist([]);
+	});
+
+
+
 
 //send a new directory to be parsed.
 	function senddir(dirr){
@@ -197,6 +203,7 @@ $(document).ready(function(){
 	}
 });
 
+
 </script>
 </head>
 
@@ -216,6 +223,7 @@ $(document).ready(function(){
 
 	<div class='controls' id='controls'>
 		<div id='addall'>add directory</div>
+		<div id='clear'>clear playlist</div>
 	</div>
 
 
