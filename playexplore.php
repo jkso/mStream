@@ -163,12 +163,17 @@ $(document).ready(function(){
 		myPlaylist.setPlaylist([]);
 	});
 
+//downlaod the dir contents.  Download uses hidden iframe
+	$("#download").click(function() {
+		var dirz = encodeURIComponent( $('#currentdirlong').val() );
+		$('#downframe').attr('src', "zipdir.php?dir="+dirz);
+	});
 
 
 
 //send a new directory to be parsed.
-	function senddir(dirr){
-		$.post('/mstream/dirparser.php', { dir: dirr}, function(response) {
+	function senddir(dir){
+		$.post('/mstream/dirparser.php', {dir: dir}, function(response) {
 		    //console.log("Response: "+response);
 		    //hand this data off to be printed on the page
 		    printdir(response);
@@ -225,8 +230,12 @@ $(document).ready(function(){
 	<div class='controls' id='controls'>
 		<div id='addall'>add directory</div>
 		<div id='clear'>clear playlist</div>
+		<div id='download'>download dir</div>
 	</div>
 
+	<div id="iframeholder">
+		<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden></iframe>
+	</div>
 
 
 	<div id="jp_container_N" class="jp-video jp-video-270p">
@@ -275,7 +284,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="jp-playlist">
-				<ul style="display: block;" class='sortable'><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="1">Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></a></div></li></ul>
+				<ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="1">Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></a></div></li></ul>
 			</div>
 			<div class="jp-no-solution" style="display: none;">
 				<span>Update Required</span>
