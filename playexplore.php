@@ -26,7 +26,7 @@ else{
 
 <script type="text/javascript">
 $(document).ready(function(){
-//this sets up the first dir you see when you long on.   
+// this sets up the first dir you see when you long on.   
 	//EDIT THESE VALUES:
 		//'startdir' is the location of the initial directory from your computer's root.  PHP needs this
 	var startdir = '/Applications/MAMP/htdocs/audiofiles/';
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 
 
-//initialize jPlayer. This needs to be done before doing naything else
+// initialize jPlayer. This needs to be done before doing naything else
 	var myPlaylist = new jPlayerPlaylist({
 			jPlayer: "#jquery_jplayer_N",
 			cssSelectorAncestor: "#jp_container_N"
@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 
 
-//this code sets up the file browser.  It runs once when the page loads and is never used again
+// this code sets up the file browser.  It runs once when the page loads and is never used again
 	//set a hidden input to the curent directory values
 	$('#currentdir').val(startdirstripped);
 	$('#currentdirlong').val(startdir);
@@ -68,10 +68,10 @@ $(document).ready(function(){
 
 
 
-//when you click an mp3, add it to the playlist
+// when you click an mp3, add it to the playlist
 	$("#filelist").on('click', 'div.filez', function() {
 		//get the mp3 name and the directory its in
-		var addfile=$(this).html();
+		var addfile=$(this).attr("id");
 		var thedir=$('#currentdir').val();
 		//put these together to send to jPlayer
 		var mp3location = thedir+addfile;
@@ -85,7 +85,7 @@ $(document).ready(function(){
 		});
 	});
 
-//when you click 'add directory', add entire directory to the playlist
+// when you click 'add directory', add entire directory to the playlist
 	$("#addall").on('click', function() {
 		//make an array of all the mp3 files in the curent directory
 		var elems = document.getElementsByClassName('filez');
@@ -94,7 +94,7 @@ $(document).ready(function(){
    		//var with the current directory
 		var thedir=$('#currentdir').val();
 
-		//loop throug harray and add eah file to the playlist
+		//loop through array and add each file to the playlist
 		$.each( arr, function() {
 			var addfile=this.innerHTML;
 			var mp3location= thedir+addfile
@@ -109,10 +109,10 @@ $(document).ready(function(){
 		});
 	});
 
-//when you click on a directory, go to that directory
+// when you click on a directory, go to that directory
 	$("#filelist").on('click', 'div.dirz', function() {
 		//get the html of that class
-		var adddir=$(this).html();
+		var adddir=$(this).attr("id");
 		var curdirlong=$('#currentdirlong').val();
 		var curdir=$('#currentdir').val();
 		var location = curdirlong+adddir+'/';
@@ -158,12 +158,12 @@ $(document).ready(function(){
 		}
 		});
 
-//clear the playlist
+// clear the playlist
 	$("#clear").click(function() {
 		myPlaylist.setPlaylist([]);
 	});
 
-//downlaod the dir contents.  Download uses hidden iframe
+// downlaod the dir contents.  Download uses hidden iframe
 	$("#download").click(function() {
 		var dirz = encodeURIComponent( $('#currentdirlong').val() );
 		$('#downframe').attr('src', "zipdir.php?dir="+dirz);
@@ -171,16 +171,16 @@ $(document).ready(function(){
 
 
 
-//send a new directory to be parsed.
+// send a new directory to be parsed.
 	function senddir(dir){
 		$.post('/mstream/dirparser.php', {dir: dir}, function(response) {
-		    //console.log("Response: "+response);
-		    //hand this data off to be printed on the page
+		    // console.log("Response: "+response);
+		    // hand this data off to be printed on the page
 		    printdir(response);
 		});
 	}
 
-//function that will recieve JSON from dirparser.php.  It will then make a list of the directory and tack on classes for functionality
+// function that will recieve JSON from dirparser.php.  It will then make a list of the directory and tack on classes for functionality
 	function printdir(dir){
 		//console.log(jQuery.parseJSON(dir));
 		var dirty = jQuery.parseJSON(dir);
@@ -192,16 +192,16 @@ $(document).ready(function(){
 		var filelist = [];
 		$.each(dirty, function() {
 			if(this.type=='mp3'){
-				filelist.push('<div class="filez">'+this.link+'</div>');
+				filelist.push('<div id="'+this.link+'" class="filez">'+this.link+'</div>');
 			}
 			if(this.type=='dir'){
-				filelist.push('<div class="dirz">'+this.link+'</div>');
+				filelist.push('<div id="'+this.link+'" class="dirz">'+this.link+'</div>');
 			}
 		});
 
 		//add a listing to go back
 		if($('#currentdir').val()!=rootdir){
-			filelist.push('<div class="back">..</div>');
+			filelist.push('<div id=".." class="back">..</div>');
 		}
 
 		//console.log(filelist);
