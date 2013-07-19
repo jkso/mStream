@@ -1,0 +1,3 @@
+[submodule "id3"]
+	path = id3
+	url = https://IrosTheBeggar@github.com/JamesHeinrich/getID3.git
