@@ -12,6 +12,7 @@ else{
 
 <head>
 
+
 <link rel="stylesheet" type="text/css" href="/mstream/css/playexplore.css" />
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -96,7 +97,7 @@ $(document).ready(function(){
 
 		//loop through array and add each file to the playlist
 		$.each( arr, function() {
-			var addfile=this.innerHTML;
+			var addfile=$(this).attr("id");
 			var mp3location= thedir+addfile
 
 			// add it to the playlist
@@ -174,7 +175,7 @@ $(document).ready(function(){
 // send a new directory to be parsed.
 	function senddir(dir){
 		$.post('/mstream/dirparser.php', {dir: dir}, function(response) {
-		    // console.log("Response: "+response);
+		     console.log("Response: "+response);
 		    // hand this data off to be printed on the page
 		    printdir(response);
 		});
@@ -192,7 +193,12 @@ $(document).ready(function(){
 		var filelist = [];
 		$.each(dirty, function() {
 			if(this.type=='mp3'){
-				filelist.push('<div id="'+this.link+'" class="filez">'+this.link+'</div>');
+				if(this.artist!=null && this.title!=null){
+					filelist.push('<div id="'+this.link+'" class="filez">'+this.artist+' - '+this.title+'</div>');
+				}
+				else{
+					filelist.push('<div id="'+this.link+'" class="filez">'+this.link+'</div>');
+				}
 			}
 			if(this.type=='dir'){
 				filelist.push('<div id="'+this.link+'" class="dirz">'+this.link+'</div>');

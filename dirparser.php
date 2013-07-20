@@ -1,4 +1,8 @@
 <?php
+require_once('id3/getid3/getid3.php');
+$getID3 = new getID3;
+
+
 //get incoming POST data.  POST data will be a directory
 $dir=$_POST['dir'];
 
@@ -22,6 +26,14 @@ foreach ($files as $file) {
 			if(substr($file, -3)=='mp3'){
 				$data[$m]['type']='mp3';
 				$data[$m]['link']=$file;
+				
+
+				$filename=$dir.$file;
+				$ThisFileInfo = $getID3->analyze($filename);
+				getid3_lib::CopyTagsToComments($ThisFileInfo);
+				$data[$m]['title']=$ThisFileInfo['comments_html']['title'][0];
+				$data[$m]['artist']=$ThisFileInfo['comments_html']['artist'][0];
+
 				$m++;
 			}
 		}
