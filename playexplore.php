@@ -12,16 +12,17 @@ else{
 <head>
 
 
-<link rel="stylesheet" type="text/css" href="/mstream/css/playexplore.css" />
+<link rel="stylesheet" type="text/css" href="css/playexplore.css" />
 
+<!-- jQuery -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 <!-- The following are all for jplayer -->
-<link href="/mstream/jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
-<link href="/mstream/jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/mstream/jPlayer24/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="/mstream/jPlayer24/add-on/jplayer.playlist.min.js"></script>
+<link href="jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
+<link href="jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jPlayer24/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="jPlayer24/add-on/jplayer.playlist.min.js"></script>
 
 
 <script type="text/javascript">
@@ -235,9 +236,9 @@ $(document).ready(function(){
 
 
 	<div class='controls' id='controls'>
-		<div id='addall'>add directory</div>
-		<div id='clear'>clear playlist</div>
-		<div id='download'>download dir</div>
+		<div id='addall'>Add Directory to Playlist</div>
+		<div id='clear'>Clear Playlist</div>
+		<div id='download'>Download Directory</div>
 		<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
 	</div>
 
