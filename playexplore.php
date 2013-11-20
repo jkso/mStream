@@ -132,6 +132,7 @@ $(document).ready(function(){
 			//get the html of that class
 			var adddir=$(this).html();
 			var curdirlong=$('#currentdirlong').val();
+			var curdirshort=$('#currentdir').val();
 			var location = curdirlong+adddir+'/';
 
 			//break apart the directory into an array of strings.  This will be used to chop off the last directory
@@ -140,12 +141,18 @@ $(document).ready(function(){
 			var builddirlong='/';
 			var builddir='/';
 
-			//loop through an construct a new directory
+			// Find the difference in the number of directories of the currentDirecory variables
+			var curDirShortLength = curdirshort.split('/').length;
+			var curDirLongLength = arrayOfStrings.length;
+			var diff = curDirLongLength-curDirShortLength;
+
+
+			//loop through an construct new currentDirectory variables
 			for (var i=0; i < arrayOfStrings.length-2; i++){
 				if(i!=0){
 					builddirlong=builddirlong+arrayOfStrings[i]+'/';
 				}
-				if(i>3){
+				if(i>diff){
 					builddir=builddir+arrayOfStrings[i]+'/';
 				}
 			}
