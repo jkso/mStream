@@ -192,7 +192,7 @@ $(document).ready(function(){
 		var filelist = [];
 		$.each(dirty, function() {
 			if(this.type=='mp3'){
-				if(this.artist!=null && this.title!=null){
+				if(this.artist!=null || this.title!=null){
 					filelist.push('<div id="'+this.link+'" class="filez">'+this.artist+' - '+this.title+'</div>');
 				}
 				else{
