@@ -173,7 +173,9 @@ $(document).ready(function(){
 
 // send a new directory to be parsed.
 	function senddir(dir){
-		$.post('/mstream/dirparser.php', {dir: dir}, function(response) {
+		// If the scraper option is checked, then tell dirparer to use getID3
+		var scrape = $('#scraper').is(":checked");
+		$.post('/mstream/dirparser.php', {dir: dir, scrape: scrape}, function(response) {
 		     console.log("Response: "+response);
 		    // hand this data off to be printed on the page
 		    printdir(response);
@@ -236,6 +238,7 @@ $(document).ready(function(){
 		<div id='addall'>add directory</div>
 		<div id='clear'>clear playlist</div>
 		<div id='download'>download dir</div>
+		<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
 	</div>
 
 	<div id="iframeholder">
