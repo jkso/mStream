@@ -4,9 +4,13 @@ $dir=$_GET['dir'];
 
 $files = scandir($dir);
 
+$explode = explode('/', $dir);
+$name = $explode[count($explode)-2];
+
+
 //create a zip
 $zip = new ZipArchive;
-$zipname='test.zip';
+$zipname='zips/'.$name.'.zip';
 
 if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
 	foreach ($files as $file) {
@@ -14,6 +18,7 @@ if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
 		if(substr($file, -3)=='mp3'){
 			$zip->addFile($dir.$file, $file);
 		}
+
 	}
 	$zip->close();
 }
@@ -21,11 +26,15 @@ else {
     echo 'failed';
 }
 
+
+
 //send the zip file
 header('Content-Type: application/zip');
-header("Content-disposition: attachment; filename=$zipname");
+header("Content-disposition: attachment; filename=$name");
 header('Content-Length: ' . filesize($zipname));
 readfile($zipname);
 
-print_r($data); 
+unlink($zipname);
+
+//print_r($data); 
 ?>

@@ -175,6 +175,8 @@ $(document).ready(function(){
 	$("#download").click(function() {
 		var dirz = encodeURIComponent( $('#currentdirlong').val() );
 		$('#downframe').attr('src', "zipdir.php?dir="+dirz);
+
+		console.log("zipdir.php?dir="+dirz);
 	});
 
 
