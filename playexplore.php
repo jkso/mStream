@@ -40,23 +40,35 @@ $(document).ready(function(){
 
 
 // initialize jPlayer. This needs to be done before doing naything else
-	var myPlaylist = new jPlayerPlaylist({
-			jPlayer: "#jquery_jplayer_N",
-			cssSelectorAncestor: "#jp_container_N"
-		}, 
+	// var myPlaylist = new jPlayerPlaylist({
+	// 		jPlayer: "#jquery_jplayer_N",
+	// 		cssSelectorAncestor: "#jp_container_N"
+	// 	}, 
 
-		[], //feed the playlsit an empty json value
+	// 	[], //feed the playlsit an empty json value
 
-		{
-			playlistOptions: {
-				enableRemoveControls: true
-			},
-			swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
-			supplied: "mp3",
-			smoothPlayBar: true,
-			keyEnabled: true,
-			audioFullScreen: true
-		});
+	// 	{
+	// 		playlistOptions: {
+	// 			enableRemoveControls: true
+	// 		},
+	// 		swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
+	// 		supplied: "mp3",
+	// 		smoothPlayBar: true,
+	// 		keyEnabled: true,
+	// 		audioFullScreen: true
+	// 	});
+	var jPlayer = $("#jquery_jplayer_1").jPlayer({
+		ready: function () {
+			$(this).jPlayer("setMedia", {
+				mp3: '/audiofiles/thethec.mp3',
+			});
+		},
+		swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
+		supplied: "mp3",
+		smoothPlayBar: true,
+		keyEnabled: true,
+		audioFullScreen: true
+	});
 
 
 
@@ -224,15 +236,80 @@ $(document).ready(function(){
 		//console.log(filelist);
 		$('#filelist').html(filelist);
 	}
+
+
+
+
+	$("#jquery_jplayer_1").bind($.jPlayer.event.ended, function(event) { // Add a listener to report the time play began
+  		console.log('yo');
+
+  		// Should disable any features that can cause the playlist to change
+  		// This will prevent some edge case lgoic errors
+
+  		//$("#playBeganAtTime").text("Play began at time = " + event.jPlayer.status.currentTime);
+
+  		// Check for playlist item with label "current song"
+  		if($('#playlist').find('li.current').length!=0){
+  			var current = $('#playlist').find('li.current');
+
+  			// if there is a next item on the list
+  			if($('#playlist').find('li.current').next('li').length!=0){
+  				var next = $('#playlist').find('li.current').next('li');
+
+  				var song = $('#playlist').find('li.current').next('li').data('songurl');
+  				// Add label of "current song" to this item
+				current.toggleClass('current');
+  				next.toggleClass('current');
+
+  				// get the url in that item
+
+  				
+  				console.log(song);
+
+  				$(this).jPlayer("setMedia", {
+					mp3: song,
+				});
+				$(this).jPlayer("play");
+  			}
+  			
+  				
+  				// Add that URL to jPlayer
+  				
+  			
+  		}
+  			
+	});
+
+
+
+
 });
 
 
 </script>
+
+
+<style>
+  #playlist_container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+</style>
+
 </head>
 
 
 
 <body>
+
+	<div id="playlist_container">
+		<ul id="playlist">
+			<li data-songurl='/audiofiles/thethec.mp3' class="current">Song1</li>
+			<li data-songurl='/audiofiles/Epiccopy.mp3'>Song2</li>
+			<li data-songurl='/audiofiles/Epiccopy.mp3' >Song3</li>
+		</ul>
+	</div>
 
 
 	<div class='masterlist' id='filelist'>
@@ -256,7 +333,7 @@ $(document).ready(function(){
 	</div>
 
 
-	<div id="jp_container_N" class="jp-video jp-video-270p">
+<!-- 	<div id="jp_container_N" class="jp-video jp-video-270p">
 		<div class="jp-type-playlist">
 			<div id="jquery_jplayer_N" class="jp-jplayer" style="width: 480px; height: 270px;"><video id="jp_video_0" preload="metadata" style="width: 0px; height: 0px;"></video></div>
 			<div class="jp-gui" style="">
@@ -309,6 +386,49 @@ $(document).ready(function(){
 				To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 			</div>
 		</div>
+	</div> -->
+
+		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+		<div id="jp_container_1" class="jp-audio">
+			<div class="jp-type-single">
+				<div class="jp-gui jp-interface">
+					<ul class="jp-controls">
+						<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+						<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+						<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+						<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+						<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+						<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+					</ul>
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+
+						</div>
+					</div>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<div class="jp-current-time"></div>
+					<div class="jp-duration"></div>
+					<ul class="jp-toggles">
+						<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+						<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+					</ul>
+				</div>
+				<div class="jp-title">
+					<ul>
+						<li>Cro Magnon Man</li>
+					</ul>
+				</div>
+				<div class="jp-no-solution">
+					<span>Update Required</span>
+					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				</div>
+			</div>
 		</div>
+
+
 
 </body>
