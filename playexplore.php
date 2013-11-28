@@ -90,12 +90,16 @@ $(document).ready(function(){
 		var mp3location = thedir+addfile;
 
 		//add it to the playlist
-		myPlaylist.add({
-			title: addfile,
-			//artist:"The Stark Palace",
-			mp3: mp3location
-			//poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-		});
+		// myPlaylist.add({
+		// 	title: addfile,
+		// 	mp3: mp3location
+		// });
+	$('ul#playlist').append(
+		    $('<li/>', {
+		        'data-songurl': mp3location,
+		        html: addfile
+		    })
+		);
 	});
 
 // when you click 'add directory', add entire directory to the playlist
@@ -241,12 +245,9 @@ $(document).ready(function(){
 
 
 	$("#jquery_jplayer_1").bind($.jPlayer.event.ended, function(event) { // Add a listener to report the time play began
-  		console.log('yo');
 
   		// Should disable any features that can cause the playlist to change
   		// This will prevent some edge case lgoic errors
-
-  		//$("#playBeganAtTime").text("Play began at time = " + event.jPlayer.status.currentTime);
 
   		// Check for playlist item with label "current song"
   		if($('#playlist').find('li.current').length!=0){
@@ -255,29 +256,21 @@ $(document).ready(function(){
   			// if there is a next item on the list
   			if($('#playlist').find('li.current').next('li').length!=0){
   				var next = $('#playlist').find('li.current').next('li');
-
-  				var song = $('#playlist').find('li.current').next('li').data('songurl');
+  				// get the url in that item
+  				var song = next.data('songurl');
   				// Add label of "current song" to this item
 				current.toggleClass('current');
   				next.toggleClass('current');
 
-  				// get the url in that item
 
-  				
-  				console.log(song);
-
+  				// Add that URL to jPlayer
   				$(this).jPlayer("setMedia", {
 					mp3: song,
 				});
 				$(this).jPlayer("play");
-  			}
-  			
-  				
-  				// Add that URL to jPlayer
-  				
+  			}	
   			
   		}
-  			
 	});
 
 
