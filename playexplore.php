@@ -21,8 +21,8 @@ else{
 <!-- The following are all for jplayer -->
 <link href="jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
 <link href="jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="jPlayer24/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="jPlayer24/add-on/jplayer.playlist.min.js"></script>
+<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
+<script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script>
 
 
 <script type="text/javascript">
