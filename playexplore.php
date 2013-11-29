@@ -304,6 +304,10 @@ $(document).ready(function(){
     bottom: 0;
     right: 0;
   }
+
+  .current {
+  	font-weight:bold;
+  }
 </style>
 
 </head>
