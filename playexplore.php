@@ -243,7 +243,7 @@ $(document).ready(function(){
 
 
 
-
+	// Core playlist functionality.  When a song ends, go to the next song
 	$("#jquery_jplayer_1").bind($.jPlayer.event.ended, function(event) { // Add a listener to report the time play began
 
   		// Should disable any features that can cause the playlist to change
@@ -271,6 +271,22 @@ $(document).ready(function(){
   			}	
   			
   		}
+	});
+
+	// When an item in the playlist is clicked, start playing that song
+	$('#playlist').on( 'click', 'li', function() {
+		var mp3 = $(this).data('songurl');
+
+		console.log(mp3);
+
+		$('#playlist li').removeClass('current');
+		$(this).addClass('current');
+
+		// Add that URL to jPlayer
+		$('#jquery_jplayer_1').jPlayer("setMedia", {
+			mp3: mp3,
+		});
+		$('#jquery_jplayer_1').jPlayer("play");
 	});
 
 
