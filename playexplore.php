@@ -128,25 +128,6 @@ $(document).ready(function(){
 	//DONE WITH EDITTING
 
 
-
-// initialize jPlayer. This needs to be done before doing naything else
-	// var myPlaylist = new jPlayerPlaylist({
-	// 		jPlayer: "#jquery_jplayer_N",
-	// 		cssSelectorAncestor: "#jp_container_N"
-	// 	}, 
-
-	// 	[], //feed the playlsit an empty json value
-
-	// 	{
-	// 		playlistOptions: {
-	// 			enableRemoveControls: true
-	// 		},
-	// 		swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
-	// 		supplied: "mp3",
-	// 		smoothPlayBar: true,
-	// 		keyEnabled: true,
-	// 		audioFullScreen: true
-	// 	});
 	var jPlayer = $("#jquery_jplayer_1").jPlayer({
 		ready: function () {
 			$(this).jPlayer("setMedia", {
@@ -174,26 +155,31 @@ $(document).ready(function(){
 // when you click an mp3, add it to the playlist
 	$("#filelist").on('click', 'div.filez', function() {
 		//get the mp3 name and the directory its in
-		var addfile=$(this).attr("id");
-		var thedir=$('#currentdir').val();
+		var filename=$(this).attr("id");
+
+		addFile(filename);
+
+		$('#playlist').sortable();
+	});
+
+
+	function addFile(filename){
+		var directory=$('#currentdir').val();
 		//put these together to send to jPlayer
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
-		var mp3location = escape(thedir+addfile);
+		var mp3location = escape(directory+filename);
 
-		//add it to the playlist
-		// myPlaylist.add({
-		// 	title: addfile,
-		// 	mp3: mp3location
-		// });
+
 		$('ul#playlist').append(
 		    $('<li/>', {
 		        'data-songurl': mp3location,
 		        'class': 'dragable',
-		        html: addfile
+		        html: filename
 		    })
 		);
-		$('#playlist').sortable();
-	});
+
+	}
+
 
 // when you click 'add directory', add entire directory to the playlist
 	$("#addall").on('click', function() {
@@ -201,22 +187,16 @@ $(document).ready(function(){
 		var elems = document.getElementsByClassName('filez');
    		var arr = jQuery.makeArray(elems);
 
-   		//var with the current directory
-		var thedir=$('#currentdir').val();
 
 		//loop through array and add each file to the playlist
 		$.each( arr, function() {
-			var addfile=$(this).attr("id");
-			var mp3location= thedir+addfile
+			var filename=$(this).attr("id");
 
-			// add it to the playlist
-			myPlaylist.add({
-				title: addfile,
-				//artist:"The Stark Palace",
-				mp3: mp3location
-				//poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
-			});
+			addFile(filename);
+
 		});
+
+		$('#playlist').sortable();
 	});
 
 // when you click on a directory, go to that directory
@@ -277,7 +257,9 @@ $(document).ready(function(){
 
 // clear the playlist
 	$("#clear").click(function() {
-		myPlaylist.setPlaylist([]);
+		// myPlaylist.setPlaylist([]);
+
+		$('#playlist').empty();
 	});
 
 // downlaod the dir contents.  Download uses hidden iframe
@@ -411,9 +393,6 @@ $(document).ready(function(){
 
 	<div id="playlist_container">
 		<ul id="playlist">
-			<li data-songurl='/audiofiles/thethec.mp3' class="current dragable">Song1</li>
-			<li data-songurl='/audiofiles/Epiccopy.mp3' class="dragable">Song2</li>
-			<li data-songurl='/audiofiles/Epiccopy.mp3' class="dragable">Song3</li>
 		</ul>
 	</div>
 
@@ -439,101 +418,46 @@ $(document).ready(function(){
 	</div>
 
 
-<!-- 	<div id="jp_container_N" class="jp-video jp-video-270p">
-		<div class="jp-type-playlist">
-			<div id="jquery_jplayer_N" class="jp-jplayer" style="width: 480px; height: 270px;"><video id="jp_video_0" preload="metadata" style="width: 0px; height: 0px;"></video></div>
-			<div class="jp-gui" style="">
-				<div class="jp-video-play" style="display: none;">
-					<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
-				</div>
-				<div class="jp-interface">
-					<div class="jp-progress">
-						<div class="jp-seek-bar" style="width: 100%;">
-							<div class="jp-play-bar" style="width: 0%;"></div>
-						</div>
-					</div>
-					<div class="jp-current-time">00:00</div>
-					<div class="jp-duration">06:66</div>
-					<div class="jp-controls-holder">
-						<ul class="jp-controls">
-							<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
-							<li><a href="javascript:;" class="jp-play" tabindex="1" style="">play</a></li>
-							<li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;">pause</a></li>
-							<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
-							<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-							<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute" style="">mute</a></li>
-							<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute" style="display: none;">unmute</a></li>
-							<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume" style="">max volume</a></li>
-						</ul>
-						<div class="jp-volume-bar" style="">
-							<div class="jp-volume-bar-value" style="width: 80%;"></div>
-						</div>
-						<ul class="jp-toggles">
-							<li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen" style="">full screen</a></li>
-							<li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen" style="display: none;">restore screen</a></li>
-							<li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle" style="">shuffle</a></li>
-							<li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off" style="display: none;">shuffle off</a></li>
-							<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat" style="">repeat</a></li>
-							<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off" style="display: none;">repeat off</a></li>
-						</ul>
-					</div>
-					<div class="jp-title" style="display: none;">
-						<ul>
-							<li>If you see this<span class="jp-artist">Something went wrong... Sorry</span></li>
-						</ul>
+	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+	<div id="jp_container_1" class="jp-audio">
+		<div class="jp-type-single">
+			<div class="jp-gui jp-interface">
+				<ul class="jp-controls">
+					<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+					<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+					<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+					<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+					<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+					<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+				</ul>
+				<div class="jp-progress">
+					<div class="jp-seek-bar">
+						<div class="jp-play-bar"></div>
+
 					</div>
 				</div>
+				<div class="jp-volume-bar">
+					<div class="jp-volume-bar-value"></div>
+				</div>
+				<div class="jp-current-time"></div>
+				<div class="jp-duration"></div>
+				<ul class="jp-toggles">
+					<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+					<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+				</ul>
 			</div>
-			<div class="jp-playlist">
-				<ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="1">Cro Magnon Man <span class="jp-artist">by The Stark Palace</span></a></div></li></ul>
+			<div class="jp-title">
+				<ul>
+					<li>Cro Magnon Man</li>
+				</ul>
 			</div>
-			<div class="jp-no-solution" style="display: none;">
+			<div class="jp-no-solution">
 				<span>Update Required</span>
 				To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 			</div>
 		</div>
-	</div> -->
-
-		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-
-		<div id="jp_container_1" class="jp-audio">
-			<div class="jp-type-single">
-				<div class="jp-gui jp-interface">
-					<ul class="jp-controls">
-						<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-						<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-						<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-						<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-						<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-						<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-					</ul>
-					<div class="jp-progress">
-						<div class="jp-seek-bar">
-							<div class="jp-play-bar"></div>
-
-						</div>
-					</div>
-					<div class="jp-volume-bar">
-						<div class="jp-volume-bar-value"></div>
-					</div>
-					<div class="jp-current-time"></div>
-					<div class="jp-duration"></div>
-					<ul class="jp-toggles">
-						<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-						<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-					</ul>
-				</div>
-				<div class="jp-title">
-					<ul>
-						<li>Cro Magnon Man</li>
-					</ul>
-				</div>
-				<div class="jp-no-solution">
-					<span>Update Required</span>
-					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-				</div>
-			</div>
-		</div>
+	</div>
 
 
 
