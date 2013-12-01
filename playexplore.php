@@ -75,7 +75,8 @@ $(document).ready(function(){
 		var addfile=$(this).attr("id");
 		var thedir=$('#currentdir').val();
 		//put these together to send to jPlayer
-		var mp3location = thedir+addfile;
+			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
+		var mp3location = escape(thedir+addfile);
 
 		//add it to the playlist
 		myPlaylist.add({
