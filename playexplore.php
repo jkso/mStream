@@ -112,7 +112,7 @@ else{
 <link href="jPlayer24/skin/prettify-jPlayer.css" rel="stylesheet" type="text/css" />
 <link href="jPlayer24/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
-<script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script>
+<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
 
 <script type="text/javascript">
@@ -130,9 +130,9 @@ $(document).ready(function(){
 
 	var jPlayer = $("#jquery_jplayer_1").jPlayer({
 		ready: function () {
-			$(this).jPlayer("setMedia", {
-				mp3: '/audiofiles/thethec.mp3',
-			});
+			// $(this).jPlayer("setMedia", {
+			// 	mp3: '/audiofiles/thethec.mp3',
+			// });
 		},
 		swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
 		supplied: "mp3",
@@ -155,15 +155,19 @@ $(document).ready(function(){
 // when you click an mp3, add it to the playlist
 	$("#filelist").on('click', 'div.filez', function() {
 		//get the mp3 name and the directory its in
-		var filename=$(this).attr("id");
+		// var filename=$(this).attr("id");
 
-		addFile(filename);
+		addFile(this);
 
 		$('#playlist').sortable();
 	});
 
 
-	function addFile(filename){
+	function addFile(that){
+		var filename = $(that).attr("id");
+
+		var title = $(that).html();
+
 		var directory=$('#currentdir').val();
 		//put these together to send to jPlayer
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
@@ -174,7 +178,7 @@ $(document).ready(function(){
 		    $('<li/>', {
 		        'data-songurl': mp3location,
 		        'class': 'dragable',
-		        html: filename
+		        html: title
 		    })
 		);
 
@@ -190,9 +194,9 @@ $(document).ready(function(){
 
 		//loop through array and add each file to the playlist
 		$.each( arr, function() {
-			var filename=$(this).attr("id");
+			// var filename=$(this).attr("id");
 
-			addFile(filename);
+			addFile(this);
 
 		});
 
@@ -322,7 +326,7 @@ $(document).ready(function(){
 	$("#jquery_jplayer_1").bind($.jPlayer.event.ended, function(event) { // Add a listener to report the time play began
 
   		// Should disable any features that can cause the playlist to change
-  		// This will prevent some edge case lgoic errors
+  		// This will prevent some edge case logic errors
 
   		// Check for playlist item with label "current song"
   		if($('#playlist').find('li.current').length!=0){
@@ -348,11 +352,19 @@ $(document).ready(function(){
   		}
 	});
 
+
+
+	$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
+
+		 var jpData = $("#jquery_jplayer_1").data('jPlayer');
+		 console.log(jpData);
+	});	
+
 	// When an item in the playlist is clicked, start playing that song
 	$('#playlist').on( 'click', 'li', function() {
 		var mp3 = $(this).data('songurl');
 
-		console.log(mp3);
+		//console.log(mp3);
 
 		$('#playlist li').removeClass('current');
 		$(this).addClass('current');
@@ -449,7 +461,7 @@ $(document).ready(function(){
 			</div>
 			<div class="jp-title">
 				<ul>
-					<li>Cro Magnon Man</li>
+					<li></li>
 				</ul>
 			</div>
 			<div class="jp-no-solution">
