@@ -1,13 +1,16 @@
-div#jp_container_1
+/*div#jp_container_1
 {
-//width:100px;
+width:100px;
 position:absolute;
 right:25px;
+}*/
+
+#filelist{
+	width:50%;
 }
 
-.masterlist{
-	position: absolute;
-	width:30%;
+.jplay{
+	width:50% !important;
 }
 
 .dirz{
@@ -31,7 +34,16 @@ background-color:rgba(28, 76, 152, 0.3);
 }
 
 .controls{
-	position:absolute;
+	position:fixed;
 	bottom: 10%;
-	right: 50%;
+}
+
+/*#playlist_container {
+position: fixed;
+bottom: 0;
+right: 0;
+}*/
+
+.current {
+	font-weight:bold;
 }

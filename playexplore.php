@@ -2,6 +2,36 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
+
+
+        <!-- all the important responsive layout stuff -->
+        <style>
+                .container { max-width: 90em; }
+
+                /* you only need width to set up columns; all columns are 100%-width by default, so we start
+                   from a one-column mobile layout and gradually improve it according to available screen space */
+
+                @media only screen and (min-width: 34em) {
+                        .feature, .info { width: 50%; }
+                }
+
+                @media only screen and (min-width: 54em) {
+                        .content { width: 66.66%; }
+                        .sidebar { width: 33.33%; }
+                        .info    { width: 100%;   }
+                }
+
+                @media only screen and (min-width: 76em) {
+                        .content { width: 58.33%; } /* 7/12 */
+                        .sidebar { width: 41.66%; } /* 5/12 */
+                        .info    { width: 50%;    }
+                }
+        </style>
+
+
+
+
+
 <script>
 /*
  * HTML5 Sortable jQuery Plugin
@@ -114,6 +144,9 @@ else{
 <script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
 <!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/screen.css">
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -171,7 +204,7 @@ $(document).ready(function(){
 		var directory=$('#currentdir').val();
 		//put these together to send to jPlayer
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
-		var mp3location = escape(directory+filename);
+		var mp3location = directory+filename;
 
 
 		$('ul#playlist').append(
@@ -261,17 +294,72 @@ $(document).ready(function(){
 
 // clear the playlist
 	$("#clear").click(function() {
-		// myPlaylist.setPlaylist([]);
-
 		$('#playlist').empty();
 	});
 
-// downlaod the dir contents.  Download uses hidden iframe
+// Download Directory  
+// Downloads uses hidden iframe
 	$("#download").click(function() {
 		var dirz = encodeURIComponent( $('#currentdirlong').val() );
+		console.log(dirz);
 		$('#downframe').attr('src', "zipdir.php?dir="+dirz);
+	});
 
-		console.log("zipdir.php?dir="+dirz);
+// Download Playlist
+	$('#downloadPlaylist').click(function(){
+		// encode entire playlist data into into array
+		// var elems = document.getElementsByClassName('dragable');
+   		var elems = $('ul#playlist li');
+   		var arr = jQuery.makeArray(elems);
+
+
+   		var sendthis = {};
+
+   		var $sendthis = $(sendthis);
+
+   		var n = 0;
+		//loop through array and add each file to the playlist
+		$.each( arr, function() {
+			// // var filename=$(this).attr("id");
+			// console.log($(this).data('songurl'));
+			// //addFile(this);
+			// var lol = $(this).data('songurl');
+			// // sendthis.push({n:lol});
+			// //sendthis.n = lol;
+			// $sendthis.prop(n, lol);
+			$('<input>').attr({
+			    type: 'hidden',
+			    name: n,
+			    value: $(this).data('songurl')
+			}).appendTo('#downform');
+			n++;
+		});
+		console.log('yo');
+		console.log(sendthis);
+
+		// $.post('zipplaylist.php', arr, function(retData) {
+		//   //$("body").append("<iframe src='zipplaylist.php' style='display: none;' ></iframe>");
+		// 	//$('#downframe').attr('src', "zipplaylist.php");
+		// 	console.log(retData);
+		// });
+
+		//submit form
+		$('#downform').submit();
+
+		$('#downform').empty();
+
+		// $.ajax({
+		//   type: "POST",
+		//   url: "zipplaylist.php",
+		//   data: sendthis
+		//   //data: {"0":"/audiofiles/Dovregubben copy.mp3", "1":"/audiofiles/thethec.mp3"}  //sendthis
+		// })
+		//   .done(function( msg ) {
+		// 	$('#downframe').attr('src', "zipplaylist.php");
+		// 	// console.log(msg);
+		//   });
+
+
 	});
 
 
@@ -281,7 +369,6 @@ $(document).ready(function(){
 		// If the scraper option is checked, then tell dirparer to use getID3
 		var scrape = $('#scraper').is(":checked");
 		$.post('/mstream/dirparser.php', {dir: dir, scrape: scrape}, function(response) {
-		     console.log("Response: "+response);
 		    // hand this data off to be printed on the page
 		    printdir(response);
 		});
@@ -344,7 +431,7 @@ $(document).ready(function(){
 
   				// Add that URL to jPlayer
   				$(this).jPlayer("setMedia", {
-					mp3: song,
+					mp3: escape(song),
 				});
 				$(this).jPlayer("play");
   			}	
@@ -354,122 +441,130 @@ $(document).ready(function(){
 
 
 
-	$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
+	// $("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
 
-		 var jpData = $("#jquery_jplayer_1").data('jPlayer');
-		 console.log(jpData);
-	});	
+	// 	 var jpData = $("#jquery_jplayer_1").data('jPlayer');
+	// 	 console.log(jpData);
+	// });	
 
 	// When an item in the playlist is clicked, start playing that song
 	$('#playlist').on( 'click', 'li', function() {
 		var mp3 = $(this).data('songurl');
-
-		//console.log(mp3);
 
 		$('#playlist li').removeClass('current');
 		$(this).addClass('current');
 
 		// Add that URL to jPlayer
 		$('#jquery_jplayer_1').jPlayer("setMedia", {
-			mp3: mp3,
+			mp3: escape(mp3),
 		});
 		$('#jquery_jplayer_1').jPlayer("play");
 	});
 
+	// Make the play list sortable
 	$('#playlist').sortable();
-
-
 });
 
 
 </script>
 
 
-<style>
-  #playlist_container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-  }
-
-  .current {
-  	font-weight:bold;
-  }
-</style>
 
 </head>
 
 
 
 <body>
+<input type="hidden" id="currentdir"></input>
+<input type="hidden" id="currentdirlong"></input>
+<form id="downform" action="zipplaylist.php" target="frameframe" method="POST">  
+<!-- Form Elements Here -->  
+</form>  
+<div id="iframeholder">
+	<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden name="frameframe"></iframe>
+</div>
 
-	<div id="playlist_container">
-		<ul id="playlist">
-		</ul>
+
+<div class="container">
+
+
+	<div class="row">
+
+
+
+		<div class='col' id='filelist'>
+			<div class="filez">beanz</div>
+		</div>
+
+
+
+
+		<div class="jplay col">
+
+
+			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+			<div id="jp_container_1" class="jp-audio">
+				<div class="jp-type-single">
+					<div class="jp-gui jp-interface">
+						<ul class="jp-controls">
+							<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+							<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+							<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+							<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+							<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+							<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+						</ul>
+						<div class="jp-progress">
+							<div class="jp-seek-bar">
+								<div class="jp-play-bar"></div>
+
+							</div>
+						</div>
+						<div class="jp-volume-bar">
+							<div class="jp-volume-bar-value"></div>
+						</div>
+						<div class="jp-current-time"></div>
+						<div class="jp-duration"></div>
+						<ul class="jp-toggles">
+							<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+							<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+						</ul>
+					</div>
+					<div class="jp-title">
+						<ul>
+							<li></li>
+						</ul>
+					</div>
+					<div class="jp-no-solution">
+						<span>Update Required</span>
+						To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+					</div>
+				</div>
+			</div>
+
+
+			<div id="playlist_container">
+				<ul id="playlist">
+				</ul>
+			</div>
+
+		</div>
 	</div>
 
 
-	<div class='masterlist' id='filelist'>
-		<div class="filez">beanz</div>
-	</div>
-
-
-	<input type="hidden" id="currentdir"></input>
-	<input type="hidden" id="currentdirlong"></input>
-
-
-	<div class='controls' id='controls'>
+	<div class='controls row' id='controls'>
 		<div id='addall'>Add Directory to Playlist</div>
 		<div id='clear'>Clear Playlist</div>
 		<div id='download'>Download Directory</div>
 		<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
+		<div></div>
+		<div id="downloadPlaylist">Download Playlist</div>
 	</div>
 
-	<div id="iframeholder">
-		<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden></iframe>
-	</div>
 
 
-	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-
-	<div id="jp_container_1" class="jp-audio">
-		<div class="jp-type-single">
-			<div class="jp-gui jp-interface">
-				<ul class="jp-controls">
-					<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
-					<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
-					<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
-					<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
-					<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
-					<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
-				</ul>
-				<div class="jp-progress">
-					<div class="jp-seek-bar">
-						<div class="jp-play-bar"></div>
-
-					</div>
-				</div>
-				<div class="jp-volume-bar">
-					<div class="jp-volume-bar-value"></div>
-				</div>
-				<div class="jp-current-time"></div>
-				<div class="jp-duration"></div>
-				<ul class="jp-toggles">
-					<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-					<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-				</ul>
-			</div>
-			<div class="jp-title">
-				<ul>
-					<li></li>
-				</ul>
-			</div>
-			<div class="jp-no-solution">
-				<span>Update Required</span>
-				To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-			</div>
-		</div>
-	</div>
+</div>
 
 
 

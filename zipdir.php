@@ -26,11 +26,11 @@ else {
     echo 'failed';
 }
 
-
+$filename=$name . '.zip';
 
 //send the zip file
 header('Content-Type: application/zip');
-header("Content-disposition: attachment; filename=$name");
+header("Content-disposition: attachment; filename=$filename");
 header('Content-Length: ' . filesize($zipname));
 readfile($zipname);
 
