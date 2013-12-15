@@ -317,6 +317,30 @@ $(document).ready(function(){
 
    		var $sendthis = $(sendthis);
 
+
+   		string_a= $('#currentdir').val();
+		string_b= $('#currentdirlong').val();
+		first_occurance=string_b.indexOf(string_a);
+		if(first_occurance==-1)
+		{
+		     alert('Search string Not found')   
+		}else
+		{
+		    string_a_length=string_a.length;
+		    if(first_occurance==0)
+		    {
+		     new_string=string_b.substring(string_a_length);
+		    }else
+		    {
+		        new_string=string_b.substring(0,first_occurance);
+		        new_string+=string_b.substring(first_occurance+string_a_length);  
+		    }
+		    //    alert(new_string);
+		}
+ 
+
+
+
    		var n = 0;
 		//loop through array and add each file to the playlist
 		$.each( arr, function() {
@@ -330,7 +354,7 @@ $(document).ready(function(){
 			$('<input>').attr({
 			    type: 'hidden',
 			    name: n,
-			    value: $(this).data('songurl')
+			    value: new_string + $(this).data('songurl')
 			}).appendTo('#downform');
 			n++;
 		});

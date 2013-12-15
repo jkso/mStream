@@ -10,7 +10,7 @@ $name='yoooo';
 
 //get incoming POST data.  POST data will be a directory
 //$dir=$_POST['files'];
-$dir = '/Applications/MAMP/htdocs';
+//$dir = '/Applications/MAMP/htdocs';
 // $files = scandir($dir);
 
 // $explode = explode('/', $dir);
@@ -32,7 +32,10 @@ if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
 // 	$zip->close();
 	foreach ($_POST as $key => $value) {
 
-		$zip->addFile($dir.$value, $value);
+		$filename = explode('/', $value);
+		$filename = end($filename);
+
+		$zip->addFile($value, $filename);
 	}
 	$zip->close();
 }
