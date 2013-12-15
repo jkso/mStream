@@ -1,27 +1,34 @@
 mStream
 =======
 
-mStream is a small script that you can use to browse a directory for mp3 files.  jPlayer is used to stream files to wherever you are.  
+mStream is a personnal cloud mp3 player.  
+
+
+Features
+=======
+-Stream your music from anywhere
+-Download your music on the go.  I use this to move music from my computer to my phone wihtout a cable
+-Can get file ID3 info
+-Download playlists!
+-Works on mobile devices
 
 
 SETUP
 =======
+You need a web server of some kind installed.  I've been using Apache but any standard server should work.
 
--make a folder in your webroot called 'mstream'
--place files in said folder
+You must have your mp3 files in a directory your webserver can see.  The easiest way to do this is to create a symlink from your mp3 directory to your a folder in server's directory.
 
-There's three variables you need to edit before this will work.  Here's what you need to do:
-
+Now place this repository on your webserver and do the following:
 -Open up playexplore.php
--Edit lines 31, 33, 35 (look at the comments by these lines for more information).
--Save and enjoy
+-Edit lines 32, 35, 37 (look at the comments by these lines for more information).
 
-NOTE: You need to have your music in your webroot.  I used a symlink to make this easy.
+And that's it.  Put your server URL into your broswer and stream away.
 
 
 LOGIN
 =======
-This comes with a very simple login system.  It's very basic because this is mean for personnal use and setting up a user database would be overkill.
+This comes with a very simple login system.  The password is hardcoded in a php file.
 
 The login system comes disabled.  To enable it:
 - Open login.php
