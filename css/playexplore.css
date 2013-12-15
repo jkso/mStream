@@ -1,9 +1,7 @@
-/*div#jp_container_1
+div#jp_container_1
 {
-width:100px;
-position:absolute;
-right:25px;
-}*/
+float:right;
+}
 
 #filelist{
 	width:50%;
@@ -36,6 +34,7 @@ background-color:rgba(28, 76, 152, 0.3);
 .controls{
 	position:fixed;
 	bottom: 10%;
+	left: 45%;
 }
 
 /*#playlist_container {
@@ -46,4 +45,5 @@ right: 0;
 
 .current {
 	font-weight:bold;
+	background-color:#BFA130;
 }

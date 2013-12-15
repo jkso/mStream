@@ -550,13 +550,13 @@ $(document).ready(function(){
 						</div>
 						<div class="jp-current-time"></div>
 						<div class="jp-duration"></div>
-						<ul class="jp-toggles">
+<!-- 						<ul class="jp-toggles">
 							<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
 							<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-						</ul>
+						</ul> -->
 					</div>
-					<div class="jp-title">
-						<ul>
+					<div id="playlist_container" class="jp-title">
+						<ul id="playlist">
 							<li></li>
 						</ul>
 					</div>
@@ -568,8 +568,8 @@ $(document).ready(function(){
 			</div>
 
 
-			<div id="playlist_container">
-				<ul id="playlist">
+			<div >
+				<ul >
 				</ul>
 			</div>
 
