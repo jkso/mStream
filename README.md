@@ -9,8 +9,12 @@ Features
 - Stream your music from anywhere
 - Download your music on the go.  I use this to move music from my computer to my phone wihtout a cable
 - Can get file ID3 info
-- Download playlists!
 - Works on mobile devices
+
+Demo
+=======
+Here's mStream on my personnal testing server:
+https://www.youtube.com/watch?v=jpbYraAVjDY
 
 
 SETUP
