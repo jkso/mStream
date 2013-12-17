@@ -24,6 +24,7 @@ if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
 }
 else {
     echo 'failed';
+    return false;
 }
 
 $filename=$name . '.zip';

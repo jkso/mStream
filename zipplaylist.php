@@ -1,58 +1,42 @@
 <?php
-// var_dump($_POST);exit;
 
+// Make sure POST data was sent
 if(isset($_POST[0])){
 
 
+	// //create a zip
+	$zip = new ZipArchive;
+	$zipname='zips/'.$name.'.zip';
 
+	if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
 
-$name='yoooo';
+		foreach ($_POST as $key => $value) {
 
-//get incoming POST data.  POST data will be a directory
-//$dir=$_POST['files'];
-//$dir = '/Applications/MAMP/htdocs';
-// $files = scandir($dir);
+			$filename = explode('/', $value);
+			$filename = end($filename);
 
-// $explode = explode('/', $dir);
-// $name = $explode[count($explode)-2];
-
-
-// //create a zip
-$zip = new ZipArchive;
-$zipname='zips/'.$name.'.zip';
-
-if ($zip->open($zipname, ZipArchive::CREATE) == TRUE) {
-// 	foreach ($files as $file) {
-// 		//add mp3s to the zip 
-// 		if(substr($file, -3)=='mp3'){
-// 			$zip->addFile($dir.$file, $file);
-// 		}
-
-// 	}
-// 	$zip->close();
-	foreach ($_POST as $key => $value) {
-
-		$filename = explode('/', $value);
-		$filename = end($filename);
-
-		$zip->addFile($value, $filename);
+			// make sure this is an mp3 file.  Don't want people downloading your php files and find your password
+			if(substr($file, -3)=='mp3'){
+				$zip->addFile($value, $filename);
+			}
+		}
+		$zip->close();
 	}
-	$zip->close();
-}
-else {
-    echo 'failed';
-}
+	else {
+	    echo 'failed';
+	    return false;
+	    // TODO: set the header to a 500 error
+	}
 
 
 
-//send the zip file
-header('Content-Type: application/zip');
-header("Content-disposition: attachment; filename=yoooo.zip");
-header('Content-Length: ' . filesize($zipname));
-readfile($zipname);
+	//send the zip file
+	header('Content-Type: application/zip');
+	header("Content-disposition: attachment; filename=yoooo.zip");
+	header('Content-Length: ' . filesize($zipname));
+	readfile($zipname);
 
-unlink($zipname);
+	unlink($zipname);
 
-//print_r($data); 
 }
 ?>
