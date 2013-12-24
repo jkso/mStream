@@ -1,12 +1,4 @@
 $(document).ready(function(){   
-//EDIT THESE VALUES:
-	// 'startdir' is the location of the initial directory from your computer's root.  PHP needs this
-	var startdir = '/Applications/MAMP/htdocs/audiofiles/';
-	// 'startdirstripped' is the location of the initial directory from your server's webroot
-	var startdirstripped = '/audiofiles/';
-	// This is as far as you want the user going back.  A value of '/' means you want your user going back as far as your webroot
-	var rootdir='/audiofiles/';
-//DONE WITH EDITTING
 
 
 // Setup jPlayer
@@ -16,7 +8,7 @@ $(document).ready(function(){
 			// 	mp3: '/audiofiles/thethec.mp3',
 			// });
 		},
-		//swfPath: "/CSS3MusicList/jPlayer24/Jplayer.swf",
+		swfPath: "jPlayer/jquery.jplayer/Jplayer.swf",
 		supplied: "mp3",
 		smoothPlayBar: true,
 		keyEnabled: true,
@@ -213,10 +205,10 @@ $(document).ready(function(){
 		$.each(dirty, function() {
 			if(this.type=='mp3'){
 				if(this.artist!=null || this.title!=null){
-					filelist.push('<div id="'+this.link+'" class="filez">'+this.artist+' - '+this.title+'</div>');
+					filelist.push('<div id="'+this.link+'" class="filez">&#9836; '+this.artist+' - '+this.title+'</div>');
 				}
 				else{
-					filelist.push('<div id="'+this.link+'" class="filez">'+this.link+'</div>');
+					filelist.push('<div id="'+this.link+'" class="filez">&#9835; '+this.link+'</div>');
 				}
 			}
 			if(this.type=='dir'){
@@ -233,6 +225,11 @@ $(document).ready(function(){
 		$('#filelist').html(filelist);
 	}
 
+
+
+
+
+/////////////////////   The Following Code is for the playlist 
 
 
 	// Core playlist functionality.  When a song ends, go to the next song
@@ -280,7 +277,6 @@ $(document).ready(function(){
 		$('#jquery_jplayer_1').jPlayer("play");
 	});
 
-	// Make the play list sortable
-	$('#playlist').sortable();
+
 });
 
