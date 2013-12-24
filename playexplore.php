@@ -11,6 +11,8 @@
 
 <head>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<?php require_once('config/editme.php'); ?> 
+
 <link rel="stylesheet" type="text/css" href="css/playexplore.css" />
 
 <!-- The following are all for jplayer -->
