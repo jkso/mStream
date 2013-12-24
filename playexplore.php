@@ -22,9 +22,6 @@
 <link rel="stylesheet" href="css/screen.css">
 
 <script type="text/javascript" src="js/sortable.js"></script>
-
-
-
 <script type="text/javascript" src="js/mstream.js"></script>
 
 

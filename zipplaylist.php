@@ -16,7 +16,7 @@ if(isset($_POST[0])){
 			$filename = end($filename);
 
 			// make sure this is an mp3 file.  Don't want people downloading your php files and find your password
-			if(substr($file, -3)=='mp3'){
+			if(substr($filename, -3)=='mp3'){
 				$zip->addFile($value, $filename);
 			}
 		}
