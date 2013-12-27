@@ -11,51 +11,48 @@ if($scrapeIt){
 }
 
 
-
-
 //get incoming POST data.  POST data will be a directory
 $dir=$_POST['dir'];
 
-$files = scandir($dir);
+$contents = scandir($dir);
 
-$data=array();
+$files=array();
+$directories=array();
 $m=0;
-foreach ($files as $file) {
+$n=0;
+foreach ($contents as $file) {
 	if($file == '.' || $file =='..'){
 		continue;
 	}
 
 
 	if(is_dir($dir.$file)){
-		$data[$m]['type']='dir';
-		$data[$m]['link']=$file;
+		$files[$m]['type']='dir';
+		$files[$m]['link']=$file;
+		$m++;
 	}
 	
 	//echo a link to add this to jplayers playlist
 	if(substr($file, -3)=='mp3'){
-		$data[$m]['type']='mp3';
-		$data[$m]['link']=$file;
+		$directories[$n]['type']='mp3';
+		$directories[$n]['link']=$file;
 		
 		if($scrapeIt){
 			$filename=$dir.$file;
 			$ThisFileInfo = $getID3->analyze($filename);
 			getid3_lib::CopyTagsToComments($ThisFileInfo);
-			$data[$m]['title']=$ThisFileInfo['comments_html']['title'][0];
-			$data[$m]['artist']=$ThisFileInfo['comments_html']['artist'][0];	
+			$directories[$n]['title']=$ThisFileInfo['comments_html']['title'][0];
+			$directories[$n]['artist']=$ThisFileInfo['comments_html']['artist'][0];	
 		}
 
-
+		$n++;
 	}
-	
-
-	$m++;
-
 	
 }
 
+$sendthis = array_merge($directories, $files);
 
-$jsondir = json_encode($data);
-//echo $json;
+$jsondir = json_encode($sendthis);
 
 echo $jsondir;
 ?>
