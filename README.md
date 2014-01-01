@@ -7,9 +7,9 @@ mStream is a cloud mp3 player.
 Demo
 =======
 
-
-Here's mStream on my personnal testing server:
+Here's a video of mStream in action:
 https://www.youtube.com/watch?v=jpbYraAVjDY
+
 
 
 SETUP
