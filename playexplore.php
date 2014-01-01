@@ -1,12 +1,10 @@
 <?php
 	session_start();
-	if($_SESSION["login"]==1){
-
-	}
-	else{
+	if($_SESSION["login"]!=1){
 		header("Location: index.php");
 		exit;
 	}
+
 ?>
 
 <head>
@@ -25,15 +23,12 @@
 
 	<script type="text/javascript" src="js/sortable.js"></script>
 	<script type="text/javascript" src="js/mstream.js"></script>
-
-
 </head>
 
 
 
 <body>
 	<input type="hidden" id="currentdir"></input>
-	<input type="hidden" id="currentdirlong"></input>
 	
 	<form id="downform" action="zipplaylist.php" target="frameframe" method="POST">  
 	</form>  

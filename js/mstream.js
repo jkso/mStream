@@ -4,9 +4,7 @@ $(document).ready(function(){
 // Setup jPlayer
 	var jPlayer = $("#jquery_jplayer_1").jPlayer({
 		ready: function () {
-			// $(this).jPlayer("setMedia", {
-			// 	mp3: '/audiofiles/thethec.mp3',
-			// });
+			// NOTHING!
 		},
 		swfPath: "jPlayer/jquery.jplayer/Jplayer.swf",
 		supplied: "mp3",
@@ -18,8 +16,7 @@ $(document).ready(function(){
 
 // this code sets up the file browser.  It runs once when the page loads and is never used again
 	//set a hidden input to the curent directory values
-	$('#currentdir').val(startdirstripped);
-	$('#currentdirlong').val(startdir);
+	$('#currentdir').val(startdir);
 	//send this directory to be parsed and displayed
 	senddir(startdir);
 
@@ -35,9 +32,7 @@ $(document).ready(function(){
 // Adds file to playlist
 	function addFile(that){
 		var filename = $(that).attr("id");
-
 		var title = $(that).html();
-
 		var directory=$('#currentdir').val();
 		//put these together to send to jPlayer
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
@@ -73,13 +68,11 @@ $(document).ready(function(){
 	$("#filelist").on('click', 'div.dirz', function() {
 		//get the html of that class
 		var adddir=$(this).attr("id");
-		var curdirlong=$('#currentdirlong').val();
 		var curdir=$('#currentdir').val();
-		var location = curdirlong+adddir+'/';
+		var location = curdir+adddir+'/';
 
 		//update the hidden fileds with the new location
-		$('#currentdirlong').val(location);
-		$('#currentdir').val(curdir+adddir+'/');
+		$('#currentdir').val(location);
 
 		//pass this value along
 		senddir(location);
@@ -87,36 +80,21 @@ $(document).ready(function(){
 
 // when you click the back directory
 	$("#filelist").on('click', 'div.back', function() {
-		if($('#currentdir').val()!=rootdir){
+		if($('#currentdir').val() != startdir){
 			//get the html of that class
-			var adddir=$(this).html();
-			var curdirlong=$('#currentdirlong').val();
 			var curdirshort=$('#currentdir').val();
-			var location = curdirlong+adddir+'/';
+			var location = curdirshort+'../';
 
 			//break apart the directory into an array of strings.  This will be used to chop off the last directory
-			var arrayOfStrings = curdirlong.split('/');
+			var arrayOfStrings = curdirshort.split('/');
 
-			var builddirlong='/';
-			var builddir='/';
-
-			// Find the difference in the number of directories of the currentDirecory variables
-			var curDirShortLength = curdirshort.split('/').length;
-			var curDirLongLength = arrayOfStrings.length;
-			var diff = curDirLongLength-curDirShortLength;
-
+			var builddir='';
 
 			//loop through an construct new currentDirectory variables
 			for (var i=0; i < arrayOfStrings.length-2; i++){
-				if(i!=0){
-					builddirlong=builddirlong+arrayOfStrings[i]+'/';
-				}
-				if(i>diff){
-					builddir=builddir+arrayOfStrings[i]+'/';
-				}
+				builddir=builddir+arrayOfStrings[i]+'/';
 			}
 
-			$('#currentdirlong').val(builddirlong);
 			$('#currentdir').val(builddir);
 
 			senddir(location);
@@ -131,8 +109,7 @@ $(document).ready(function(){
 // Download Directory  
 // Downloads uses hidden iframe
 	$("#download").click(function() {
-		var dirz = encodeURIComponent( $('#currentdirlong').val() );
-		console.log(dirz);
+		var dirz = encodeURIComponent( $('#currentdir').val() );
 		$('#downframe').attr('src', "zipdir.php?dir="+dirz);
 	});
 
@@ -143,32 +120,13 @@ $(document).ready(function(){
    		var playlistElements = $('ul#playlist li');
    		var playlistArray = jQuery.makeArray(playlistElements);
 
-   		// The following code was shamelesslt stolen from a Stack Overflow question
-   		// It finds the difference between the two directory strings
-   		string_a= $('#currentdir').val();
-		string_b= $('#currentdirlong').val();
-		first_occurance=string_b.indexOf(string_a);
-
-	    string_a_length=string_a.length;
-	    if(first_occurance==0)
-	    {
-	     new_string=string_b.substring(string_a_length);
-	    }else
-	    {
-	        new_string=string_b.substring(0,first_occurance);
-	        new_string+=string_b.substring(first_occurance+string_a_length);  
-	    }
-
- 
-
    		var n = 0;
 		//loop through array and add each file to the playlist
 		$.each( playlistArray, function() {
-
 			$('<input>').attr({
 			    type: 'hidden',
 			    name: n,
-			    value: new_string + $(this).data('songurl')
+			    value: $(this).data('songurl')
 			}).appendTo('#downform');
 			n++;
 		});
@@ -194,8 +152,7 @@ $(document).ready(function(){
 
 // function that will recieve JSON from dirparser.php.  It will then make a list of the directory and tack on classes for functionality
 	function printdir(dir){
-		//console.log(jQuery.parseJSON(dir));
-		var dirty = jQuery.parseJSON(dir);
+		var dirty = $.parseJSON(dir);
 
 		//clear the list
 		$('#filelist').empty();
@@ -217,11 +174,10 @@ $(document).ready(function(){
 		});
 
 		//add a listing to go back
-		if($('#currentdir').val()!=rootdir){
+		if($('#currentdir').val() != startdir){
 			filelist.push('<div id=".." class="back">..</div>');
 		}
 
-		//console.log(filelist);
 		$('#filelist').html(filelist);
 	}
 
