@@ -22,9 +22,8 @@
 
 
 
-div#jp_container_1
-{
-float:right;
+div#jp_container_1{
+	float:right;
 }
 
 #filelist{
@@ -61,11 +60,13 @@ background-color:rgba(28, 76, 152, 0.3);
 	left: 45%;
 }
 
-/*#playlist_container {
-position: fixed;
+#playlist_container {
+/*position: fixed;
 bottom: 0;
-right: 0;
-}*/
+right: 0;*/
+float:right;
+width: 420px;
+}
 
 .current {
 	font-weight:bold;

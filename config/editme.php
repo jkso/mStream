@@ -10,6 +10,6 @@
 
 <script>
 	// This is the location of your files.
-	var startdir = '../audiofiles/';
+	var startdir = 'audiofiles/';
 
 </script>

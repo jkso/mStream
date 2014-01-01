@@ -46,6 +46,8 @@
 
 
 			<div class="jplay col">
+				<div class ="row">
+
 
 				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -76,10 +78,6 @@
 								<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
 							</ul> -->
 						</div>
-						<div id="playlist_container" class="jp-title">
-							<ul id="playlist">
-							</ul>
-						</div>
 						<div class="jp-no-solution">
 							<span>Update Required</span>
 							To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
@@ -87,6 +85,16 @@
 					</div>
 				</div>
 
+				</div>
+
+				<div class="row">
+
+				<div id="playlist_container" >
+					<ul id="playlist">
+					</ul>
+				</div>
+
+				</div>
 
 			</div>
 		</div>
@@ -97,7 +105,6 @@
 			<div id='clear'>Clear Playlist</div>
 			<div id='download'>Download Directory</div>
 			<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
-			<div></div>
 			<div id="downloadPlaylist">Download Playlist</div>
 		</div>
 

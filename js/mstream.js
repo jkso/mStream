@@ -32,7 +32,7 @@ $(document).ready(function(){
 // Adds file to playlist
 	function addFile(that){
 		var filename = $(that).attr("id");
-		var title = $(that).html();
+		var title = $(that).find('span.title').html();
 		var directory=$('#currentdir').val();
 		//put these together to send to jPlayer
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
@@ -162,10 +162,10 @@ $(document).ready(function(){
 		$.each(dirty, function() {
 			if(this.type=='mp3'){
 				if(this.artist!=null || this.title!=null){
-					filelist.push('<div id="'+this.link+'" class="filez">&#9836; '+this.artist+' - '+this.title+'</div>');
+					filelist.push('<div id="'+this.link+'" class="filez"><span class="pre-char">&#9836;</span> <span class="title">'+this.artist+' - '+this.title+'</span></div>');
 				}
 				else{
-					filelist.push('<div id="'+this.link+'" class="filez">&#9835; '+this.link+'</div>');
+					filelist.push('<div id="'+this.link+'" class="filez"><span class="pre-char">&#9835;</span> <span class="title">'+this.link+'</span></div>');
 				}
 			}
 			if(this.type=='dir'){
