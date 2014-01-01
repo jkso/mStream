@@ -10,21 +10,21 @@
 ?>
 
 <head>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<?php require_once('config/editme.php'); ?> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<?php require_once('config/editme.php'); ?> 
 
-<link rel="stylesheet" type="text/css" href="css/playexplore.css" />
+	<link rel="stylesheet" type="text/css" href="css/playexplore.css" />
 
-<!-- The following are all for jplayer -->
-<link href="jPlayer/skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
-<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
+	<!-- The following are all for jplayer -->
+	<link href="jPlayer/skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
+	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
-<link rel="stylesheet" href="css/grid.css">
-<link rel="stylesheet" href="css/screen.css">
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="css/screen.css">
 
-<script type="text/javascript" src="js/sortable.js"></script>
-<script type="text/javascript" src="js/mstream.js"></script>
+	<script type="text/javascript" src="js/sortable.js"></script>
+	<script type="text/javascript" src="js/mstream.js"></script>
 
 
 </head>
