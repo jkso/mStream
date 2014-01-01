@@ -144,7 +144,7 @@ $(document).ready(function(){
 	function senddir(dir){
 		// If the scraper option is checked, then tell dirparer to use getID3
 		var scrape = $('#scraper').is(":checked");
-		$.post('/mstream/dirparser.php', {dir: dir, scrape: scrape}, function(response) {
+		$.post('dirparser.php', {dir: dir, scrape: scrape}, function(response) {
 		    // hand this data off to be printed on the page
 		    printdir(response);
 		});
