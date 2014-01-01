@@ -10,6 +10,10 @@ Demo
 Here's a video of mStream in action:
 https://www.youtube.com/watch?v=jpbYraAVjDY
 
+Here's an semi-workign example:
+http://mstream-demo.appspot.com/playexplore.php
+This won't play or download files.  I'm not paying for that kind of bandwith.
+
 
 
 SETUP
