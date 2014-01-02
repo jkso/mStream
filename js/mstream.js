@@ -43,7 +43,7 @@ $(document).ready(function(){
 		    $('<li/>', {
 		        'data-songurl': mp3location,
 		        'class': 'dragable',
-		        html: title
+		        html: '<span class="play1">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
 		    })
 		);
 
@@ -99,6 +99,10 @@ $(document).ready(function(){
 
 			senddir(location);
 		}
+	});
+
+	$('body').on('click', 'a.closeit', function(e){
+		$(this).parent().remove();
 	});
 
 // clear the playlist
@@ -220,11 +224,11 @@ $(document).ready(function(){
 
 
 	// When an item in the playlist is clicked, start playing that song
-	$('#playlist').on( 'click', 'li', function() {
-		var mp3 = $(this).data('songurl');
-
+	$('#playlist').on( 'click', 'li span', function() {
+		var mp3 = $(this).parent().data('songurl');
+		
 		$('#playlist li').removeClass('current');
-		$(this).addClass('current');
+		$(this).parent().addClass('current');
 
 		// Add that URL to jPlayer
 		$('#jquery_jplayer_1').jPlayer("setMedia", {

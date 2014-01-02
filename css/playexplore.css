@@ -27,11 +27,12 @@ div#jp_container_1{
 }
 
 #filelist{
-	width:50%;
+	width:30%;
 }
 
 .jplay{
 	width:50% !important;
+	float: right !important; 
 }
 
 .dirz{
@@ -64,11 +65,35 @@ background-color:rgba(28, 76, 152, 0.3);
 /*position: fixed;
 bottom: 0;
 right: 0;*/
-float:right;
-width: 420px;
+
 }
 
 .current {
 	font-weight:bold;
 	background-color:#BFA130;
+}
+
+li{
+	position: relative;
+}
+
+li span.play1 {
+	width: 95%;
+	position: relative;
+
+}
+li a.closeit{
+	position: relative;
+	float: right;
+}
+
+#playlist{
+	list-style-type: none;
+	float: right;
+width: 420px;
+}
+
+#playlist li{
+	width: inherit;
+	height: inherit;
 }
