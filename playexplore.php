@@ -6,6 +6,7 @@
 	}
 
 ?>
+
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -15,22 +16,25 @@
 
     <script src="js/modernizr.js"></script>
 
-<link rel="stylesheet" href="css/foundation.css" />
-<link rel="stylesheet" href="css/master.css">
-
-<!-- END NEW HEAD SECTION -->
-
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<?php require_once('config/editme.php'); ?> 
+
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="css/master.css">
 
 	<!-- The following are all for jplayer -->
 	<link href="jPlayer/skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
 	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
+	<!-- <link rel="stylesheet" href="css/grid.css"> -->
+	<!-- <link rel="stylesheet" href="css/screen.css"> -->
+
 	<script type="text/javascript" src="js/sortable.js"></script>
 	<script type="text/javascript" src="js/mstream.js"></script>
 </head>
+
+
 
 <body>
 	<input type="hidden" id="currentdir"></input>
@@ -40,7 +44,7 @@
 	
 	<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden name="frameframe"></iframe>
 
-<div class="off-canvas-wrap">
+	<div class="off-canvas-wrap">
   <div class="inner-wrap">
     <nav class="tab-bar">
 
@@ -78,13 +82,13 @@
 			<div class='col' id='filelist'>
 				<div class="filez">beanz</div>
 			</div>
-		
 		</div><!-- /6 columns -->
 
 		<div class="large-6 columns">
 
 			<div class="jplay col">
-				<h3>Your Playlist</h3>
+				<div class ="row">
+
 
 				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -122,9 +126,15 @@
 					</div>
 				</div>
 
+				</div>
+
+				<div class="row">
+
 				<div id="playlist_container" >
 					<ul id="playlist">
 					</ul>
+				</div>
+
 				</div>
 
 			</div>
@@ -140,7 +150,8 @@
 		</div>
 
 
-		</div>
+	</div>
+
 	</div><!-- /6 columns -->
     </section>
 
@@ -149,11 +160,9 @@
 
   </div>
 </div>
-	
-    <script src="js/jquery.js"></script>
+
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
     </script>
-
 </body>
