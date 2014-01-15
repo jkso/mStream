@@ -6,26 +6,31 @@
 	}
 
 ?>
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mstream Media Player - Brainchild of Paul Sori</title>
 
-<head>
+    <script src="js/modernizr.js"></script>
+
+<link rel="stylesheet" href="css/foundation.css" />
+<link rel="stylesheet" href="css/master.css">
+
+<!-- END NEW HEAD SECTION -->
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<?php require_once('config/editme.php'); ?> 
-
-	<link rel="stylesheet" type="text/css" href="css/playexplore.css" />
 
 	<!-- The following are all for jplayer -->
 	<link href="jPlayer/skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
 	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
-	<link rel="stylesheet" href="css/grid.css">
-	<link rel="stylesheet" href="css/screen.css">
-
 	<script type="text/javascript" src="js/sortable.js"></script>
 	<script type="text/javascript" src="js/mstream.js"></script>
 </head>
-
-
 
 <body>
 	<input type="hidden" id="currentdir"></input>
@@ -35,19 +40,51 @@
 	
 	<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden name="frameframe"></iframe>
 
+<div class="off-canvas-wrap">
+  <div class="inner-wrap">
+    <nav class="tab-bar">
 
-	<div class="container">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+      </section>
 
-		<div class="row">
+      <section class="right tab-bar-section">
+        <h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto"></h1>
+      </section>
+
+    </nav>
+
+    <!-- Off Canvas Menu -->
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Subdirectories(?)</label></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        <li><a href="#">The Psychohistorians</a></li>
+        ...
+      </ul>
+    </aside>
+
+    <section class="main-section">
+      <!-- content goes in here -->
+	
+		<div class="large-6 columns">
+			<h3>Your Library</h3>
 
 			<div class='col' id='filelist'>
 				<div class="filez">beanz</div>
 			</div>
+		
+		</div><!-- /6 columns -->
 
+		<div class="large-6 columns">
 
 			<div class="jplay col">
-				<div class ="row">
-
+				<h3>Your Playlist</h3>
 
 				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -85,15 +122,9 @@
 					</div>
 				</div>
 
-				</div>
-
-				<div class="row">
-
 				<div id="playlist_container" >
 					<ul id="playlist">
 					</ul>
-				</div>
-
 				</div>
 
 			</div>
@@ -109,7 +140,20 @@
 		</div>
 
 
-	</div>
+		</div>
+	</div><!-- /6 columns -->
+    </section>
 
+  <!-- close the off-canvas menu -->
+  <a class="exit-off-canvas"></a>
+
+  </div>
+</div>
+	
+    <script src="js/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 
 </body>
