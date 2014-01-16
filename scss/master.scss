@@ -27,6 +27,8 @@ right:25px;
 	-webkit-border-radius: 0 0 3px 3px;
 	-moz-border-radius: 0 0 3px 3px;
 	border-radius: 0 0 3px 3px;
+	position: relative;
+z-index: 3;
 }
 
 .masterlist{
@@ -66,8 +68,6 @@ background-color:rgba(28, 76, 152, 0.3);
 }
 
 .controls{
-	// position:absolute;
-	// bottom: 10%;
 	margin-bottom:10px;
 }
 
@@ -90,4 +90,40 @@ ul.jp-controls{
 
 #downform{
 	position:absolute;
+}
+
+.controls{
+	div{
+		cursor: pointer;
+	}
+}
+
+.main-section{
+	height: 100%;
+	padding-bottom: 96px;
+	position: relative;
+z-index: 1;
+}
+
+.libraryColumn{
+	background: rgba(255, 255, 255, 0.8);
+	background: rgb(255, 255, 255);
+	height: 100%;
+	border: 1px solid rgb(202, 202, 202);
+	margin: 0 10px 96px;
+	padding: 0;
+}
+// Jplayer
+
+.jplay{
+	position: fixed;
+bottom: 0;
+width: 100%;
+}
+
+div.jp-audio{
+	width: 100%;
+position: fixed;
+bottom: 0;
+left: 0;
 }

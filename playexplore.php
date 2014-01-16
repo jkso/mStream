@@ -76,7 +76,7 @@
     <section class="main-section">
       <!-- content goes in here -->
 	
-		<div class="large-6 columns">
+		<div class="large-6 columns libraryColumn">
 			<h3>Your Library</h3>
 
 			<div class='col' id='filelist'>
@@ -88,7 +88,6 @@
 
 			<div class="jplay col">
 				<div class ="row">
-
 
 				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
@@ -128,20 +127,18 @@
 
 				</div>
 
-				<div class="row">
 
 				<div id="playlist_container" >
 					<ul id="playlist">
 					</ul>
 				</div>
 
-				</div>
 
 			</div>
 		</div>
 
 
-		<div class='controls row' id='controls'>
+		<div class='controls' id='controls'>
 			<div id='addall'>Add Directory to Playlist</div>
 			<div id='clear'>Clear Playlist</div>
 			<div id='download'>Download Directory</div>
