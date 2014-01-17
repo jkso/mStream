@@ -83,7 +83,10 @@
 				<div class="filez">beanz</div>
 			</div>
 		</div><!-- /6 columns -->
-
+		<div id="playlist_container" >
+			<ul id="playlist">
+			</ul>
+		</div>
 		<div class="large-6 columns">
 
 			<div class="jplay col">
@@ -113,10 +116,10 @@
 							</div>
 							<div class="jp-current-time"></div>
 							<div class="jp-duration"></div>
-	<!-- 						<ul class="jp-toggles">
-								<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
-								<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
-							</ul> -->
+								<!-- <ul class="jp-toggles">
+									<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+									<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+								</ul> -->
 						</div>
 						<div class="jp-no-solution">
 							<span>Update Required</span>
@@ -126,13 +129,6 @@
 				</div>
 
 				</div>
-
-
-				<div id="playlist_container" >
-					<ul id="playlist">
-					</ul>
-				</div>
-
 
 			</div>
 		</div>
