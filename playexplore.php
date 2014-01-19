@@ -140,6 +140,7 @@
 			<div id='download'>Download Directory</div>
 			<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
 			<div id="downloadPlaylist">Download Playlist</div>
+			<div id="save_playlist"> Save Playlist</div>
 		</div>
 
 

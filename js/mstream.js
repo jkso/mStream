@@ -52,6 +52,33 @@ $(document).ready(function(){
 	}
 
 
+	$('#save_playlist').on('click', function(){
+		var playlistElements = $('ul#playlist li');
+   		var playlistArray = jQuery.makeArray(playlistElements);
+
+   		var stuff = [];
+
+		//loop through array and add each file to the playlist
+		$.each( playlistArray, function() {
+
+			stuff.push($(this).data('songurl'));
+
+
+		});
+
+console.log(stuff);
+
+		$.ajax({
+		  type: "POST",
+		  url: "savem3u.php",
+		  data: {stuff:stuff},
+		})
+	    .done(function( msg ) {
+	      console.log(msg);
+	    });
+	});
+
+
 // when you click 'add directory', add entire directory to the playlist
 	$("#addall").on('click', function() {
 		//make an array of all the mp3 files in the curent directory
