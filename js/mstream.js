@@ -52,6 +52,9 @@ $(document).ready(function(){
 	}
 
 
+
+
+
 	$('#save_playlist').on('click', function(){
 		var playlistElements = $('ul#playlist li');
    		var playlistArray = jQuery.makeArray(playlistElements);
@@ -76,7 +79,50 @@ console.log(stuff);
 	    .done(function( msg ) {
 	      console.log(msg);
 	    });
+
+	    // Alert the user the playlsit has been saved
+
+	    //  Add playlist to the sidebar
 	});
+
+
+
+
+
+	$('#playlist_list li').on('click', function(){
+		var filename = $(this).find('a').data('filename');
+
+		console.log(filename);
+
+		$.ajax({
+		  type: "POST",
+		  url: "playlists/playlist_parser.php",
+		  data: {filename: filename},
+		  dataType: 'json',
+		})
+	    .done(function( msg ) {
+	    	console.log(msg);
+
+		$.each( msg, function(i ,item) {
+
+      		$('ul#playlist').append(
+			    $('<li/>', {
+			        'data-songurl': item,
+			        'class': 'dragable',
+			        html: '<span class="play1">'+item+'</span><a href="javascript:void(0)" class="closeit">X</a>'
+			    })
+			);
+		});
+
+
+
+
+			$('#playlist').sortable();
+	    });
+
+
+	});
+
 
 
 // when you click 'add directory', add entire directory to the playlist

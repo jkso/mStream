@@ -69,7 +69,20 @@
         <li><a href="#">The Psychohistorians</a></li>
         <li><a href="#">The Psychohistorians</a></li>
         <li><a href="#">The Psychohistorians</a></li>
-        ...
+      </ul>
+
+      <ul class="off-canvas-list" id="playlist_list">
+      	<?php 
+      	$playlists = scandir('playlists/');
+
+      	foreach ($playlists as $key => $playlist) {
+      		# 
+      		if(substr($playlist, -3)=='m3u'){
+      			echo '<li><a data-filename="' . $playlist . '">' . $playlist . '</a></li>' . "\n";
+      		}
+      	}
+
+      	?>
       </ul>
     </aside>
 
