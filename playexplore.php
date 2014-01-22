@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="css/master.css">
 
 	<!-- The following are all for jplayer -->
-	<link href="jPlayer/skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+	<link href="jPlayer/skin/midnight.black/jplayer.midnight.black.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
 	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
@@ -88,19 +88,23 @@
 
     <section class="main-section">
       <!-- content goes in here -->
-	
-		<div class="large-6 columns libraryColumn">
-			<h3>Your Library</h3>
+		<div class="row">
+			<div class="large-6 columns libraryColumn">
+				<h3>Library</h3>
 
-			<div class='col' id='filelist'>
-				<div class="filez">beanz</div>
+				<div class='col' id='filelist'>
+					<div class="filez">beanz</div>
+				</div>
+			</div><!-- /6 columns -->
+			
+			<div class="large-6 columns playlistColumn" id="playlist_container" >
+				<h3>Playlist</h3>
+				<ul id="playlist">
+				</ul>
 			</div>
-		</div><!-- /6 columns -->
-		<div id="playlist_container" >
-			<ul id="playlist">
-			</ul>
 		</div>
-		<div class="large-6 columns">
+		<!-- /row -->
+				
 
 			<div class="jplay col">
 				<div class ="row">
@@ -146,6 +150,7 @@
 			</div>
 		</div>
 
+		<div class="large-6 columns">
 
 		<div class='controls' id='controls'>
 			<div id='addall'>Add Directory to Playlist</div>
@@ -156,10 +161,10 @@
 			<div id="save_playlist"> Save Playlist</div>
 		</div>
 
-
-	</div>
+		</div>
 
 	</div><!-- /6 columns -->
+
     </section>
 
   <!-- close the off-canvas menu -->
