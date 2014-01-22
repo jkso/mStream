@@ -153,12 +153,12 @@
 		<div class="large-6 columns">
 
 		<div class='controls' id='controls'>
-			<div id='addall'>Add Directory to Playlist</div>
-			<div id='clear'>Clear Playlist</div>
-			<div id='download'>Download Directory</div>
-			<div><input type="checkbox" id="scraper">Use ID3 scraper (this will lag)</div>
-			<div id="downloadPlaylist">Download Playlist</div>
-			<div id="save_playlist"> Save Playlist</div>
+			<div class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></div><!-- Add Directory to Playlist -->
+			<div class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></div><!-- Clear Playlist -->
+			<div class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_134_inbox_in.png" alt="" width="27" height="27"></div><!-- Download Directory -->
+			<div class="scrape"><img src="img/glyphicons/png/glyphicons_371_global.png" alt=""><input type="checkbox" id="scraper"></div><!-- Use ID3 scraper (this will lag) -->
+			<div class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_446_floppy_save.png"></div><!-- Download Playlist -->
+			<div class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_151_new_window.png" alt="" width="27" height="27"></div><!-- Save Playlist -->
 		</div>
 
 		</div>
