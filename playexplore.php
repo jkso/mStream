@@ -4,7 +4,6 @@
 		header("Location: index.php");
 		exit;
 	}
-
 ?>
 
 <!doctype html>
@@ -12,7 +11,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mstream Media Player - Brainchild of Paul Sori</title>
+    <title>Mstream Media Player - All your media. Everywhere you go.</title>
 
     <script src="js/modernizr.js"></script>
 
@@ -25,10 +24,6 @@
 	<!-- The following are all for jplayer -->
 	<link href="css/midnight.black/jplayer.midnight.black.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
-	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
-
-	<!-- <link rel="stylesheet" href="css/grid.css"> -->
-	<!-- <link rel="stylesheet" href="css/screen.css"> -->
 
 	<script type="text/javascript" src="js/sortable.js"></script>
 	<script type="text/javascript" src="js/mstream.js"></script>
@@ -90,17 +85,42 @@
       <!-- content goes in here -->
 		<div class="row">
 			<div class="large-6 columns libraryColumn">
-				<h3>Library</h3>
+				<div class="columnHeader">
+					<div class="large-6 columns">
+						<h3>Library</h3>
+					</div>
 
-				<div class='col' id='filelist'>
-					<div class="filez">beanz</div>
+					<div class="large-6 columns">
+						<div class="controls">
+							<a title="Add Directory to Playlist" class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></a><!-- Add Directory to Playlist -->
+							<a title="Use ID3 scraper (this will lag)" id="getInfo" class="scrape"><img src="img/glyphicons/png/glyphicons_195_circle_info.png" alt="" width="27" height="27"><input class="hide" type="checkbox" id="scraper"></a><!-- Use ID3 scraper (this will lag) -->
+							<a title="Download Directory" class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_181_download_alt.png" alt="" width="27" height="27"></a><!-- Download Directory -->
+						</div>
+					</div>
+				</div>
+
+				<div class='clear col' id='filelist'>
+					<div class="filez">Nothing Here...</div>
 				</div>
 			</div><!-- /6 columns -->
 			
 			<div class="large-6 columns playlistColumn" id="playlist_container" >
-				<h3>Playlist</h3>
-				<ul id="playlist">
-				</ul>
+				<div class="columnHeader">
+					<div class="large-6 columns">
+						<h3>Playlist</h3>
+					</div>
+
+					<div class="large-6 columns">
+						<div class="controls">
+							<a title="Clear Playlist" class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></a><!-- Clear Playlist -->
+							<a title="Download Playlist" class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_181_download_alt.png" width="27" height="27"></a><!-- Download Playlist -->
+							<a title="Save Playlist" class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_195_circle_info.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
+						</div>
+					</div>
+				</div>
+
+				<ul class="clear" id="playlist"></ul>
+
 			</div>
 		</div>
 		<!-- /row -->
@@ -150,19 +170,6 @@
 			</div>
 		</div>
 
-		<div class="large-6 columns">
-
-		<div class='controls' id='controls'>
-			<div class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></div><!-- Add Directory to Playlist -->
-			<div class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></div><!-- Clear Playlist -->
-			<div class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_134_inbox_in.png" alt="" width="27" height="27"></div><!-- Download Directory -->
-			<div class="scrape"><img src="img/glyphicons/png/glyphicons_371_global.png" alt=""><input type="checkbox" id="scraper"></div><!-- Use ID3 scraper (this will lag) -->
-			<div class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_446_floppy_save.png"></div><!-- Download Playlist -->
-			<div class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_151_new_window.png" alt="" width="27" height="27"></div><!-- Save Playlist -->
-		</div>
-
-		</div>
-
 	</div><!-- /6 columns -->
 
     </section>
@@ -176,5 +183,12 @@
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
+    </script>
+    <script>
+    jQuery(document).ready(function($) {
+    	$('a#getInfo').click(function(){
+    		$('input[type=checkbox]').trigger('click'); 
+    	}
+    });
     </script>
 </body>
