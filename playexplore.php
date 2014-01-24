@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="css/master.css">
 
 	<!-- The following are all for jplayer -->
-	<link href="jPlayer/skin/midnight.black/jplayer.midnight.black.css" rel="stylesheet" type="text/css" />
+	<link href="css/midnight.black/jplayer.midnight.black.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jPlayer/jquery.jplayer/jquery.jplayer.js"></script>
 	<!-- <script type="text/javascript" src="jPlayer/add-on/jplayer.playlist.js"></script> -->
 
