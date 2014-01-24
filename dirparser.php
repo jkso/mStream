@@ -50,7 +50,7 @@ foreach ($contents as $file) {
 	
 }
 
-$sendthis = array_merge($directories, $files);
+$sendthis = array_merge($files, $directories);
 
 $jsondir = json_encode($sendthis);
 
