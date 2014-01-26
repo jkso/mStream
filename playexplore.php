@@ -56,14 +56,7 @@
     <!-- Off Canvas Menu -->
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li><label>Subdirectories(?)</label></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        <li><a href="#">The Psychohistorians</a></li>
+        <li><label>Saved Playlists</label></li>
       </ul>
 
       <ul class="off-canvas-list" id="playlist_list">
@@ -86,15 +79,18 @@
 		<div class="row">
 			<div class="large-6 columns libraryColumn">
 				<div class="columnHeader">
-					<div class="large-6 columns">
+					<div class="large-6 columns noPaddingLeft">
 						<h3>Library</h3>
 					</div>
 
 					<div class="large-6 columns">
-						<div class="controls">
+						<div class="controls leftControls">
 							<a title="Add Directory to Playlist" class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></a><!-- Add Directory to Playlist -->
-							<a title="Use ID3 scraper (this will lag)" id="getInfo" class="scrape"><img src="img/glyphicons/png/glyphicons_195_circle_info.png" alt="" width="27" height="27"><input class="hide" type="checkbox" id="scraper"></a><!-- Use ID3 scraper (this will lag) -->
 							<a title="Download Directory" class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_181_download_alt.png" alt="" width="27" height="27"></a><!-- Download Directory -->
+							<div class="scraper">
+								<label for="scraper" id="getInfo" class="scrape">Get track info</label>
+								<input class="left" type="checkbox" id="scraper">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -106,7 +102,7 @@
 			
 			<div class="large-6 columns playlistColumn" id="playlist_container" >
 				<div class="columnHeader">
-					<div class="large-6 columns">
+					<div class="large-6 columns noPaddingLeft">
 						<h3>Playlist</h3>
 					</div>
 
@@ -114,7 +110,7 @@
 						<div class="controls">
 							<a title="Clear Playlist" class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></a><!-- Clear Playlist -->
 							<a title="Download Playlist" class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_181_download_alt.png" width="27" height="27"></a><!-- Download Playlist -->
-							<a title="Save Playlist" class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_195_circle_info.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
+							<a title="Save Playlist" class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_443_floppy_disk.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
 						</div>
 					</div>
 				</div>
