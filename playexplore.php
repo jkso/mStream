@@ -55,11 +55,10 @@
 
     <!-- Off Canvas Menu -->
     <aside class="left-off-canvas-menu">
-      <ul class="off-canvas-list">
-        <li><label>Saved Playlists</label></li>
-      </ul>
+
 
       <ul class="off-canvas-list" id="playlist_list">
+      	<li><label>Playlists</label></li>
       	<?php 
       	$playlists = scandir('playlists/');
 
