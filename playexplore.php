@@ -29,9 +29,16 @@
 	<script type="text/javascript" src="js/mstream.js"></script>
 </head>
 
-
-
 <body>
+
+<!-- Size Classes: [small medium large xlarge expand] -->
+<div id="savePlaylist" class="reveal-modal small" data-reveal>
+  <h2>Save Playlist</h2>
+  <input type="text" required placeholder="Enter your playlist name">
+  <input type="submit" class="button small" value="Save Playlist">
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
 	<input type="hidden" id="currentdir"></input>
 	
 	<form id="downform" action="zipplaylist.php" target="frameframe" method="POST">  
@@ -109,12 +116,13 @@
 						<div class="controls">
 							<a title="Clear Playlist" class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></a><!-- Clear Playlist -->
 							<a title="Download Playlist" class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_181_download_alt.png" width="27" height="27"></a><!-- Download Playlist -->
-							<a title="Save Playlist" class="save" id="save_playlist"><img src="img/glyphicons/png/glyphicons_443_floppy_disk.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
+							<a title="Save Playlist" class="save" data-reveal-id="savePlaylist" id="save_playlist"><img src="img/glyphicons/png/glyphicons_443_floppy_disk.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
 						</div>
 					</div>
 				</div>
-
-				<ul class="clear" id="playlist"></ul>
+				<div class="clear col">
+					<ul class="clear" id="playlist"></ul>
+				</div>
 
 			</div>
 		</div>
