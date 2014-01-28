@@ -87,22 +87,29 @@
 		<div class="row">
 			<div class="large-6 columns libraryColumn">
 				<div class="columnHeader">
-					<div class="large-6 columns noPaddingLeft">
-						<h3>Library</h3>
-					</div>
+					
+					<div class="libraryHeaderContainer">
+						<div class="large-6 columns noPaddingLeft">
+							<h3>Library</h3>
+						</div>
 
-					<div class="large-6 columns">
-						<div class="controls leftControls">
-							<a title="Add Directory to Playlist" class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></a><!-- Add Directory to Playlist -->
-							<a title="Download Directory" class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_181_download_alt.png" alt="" width="27" height="27"></a><!-- Download Directory -->
-							<div class="scraper">
-								<label for="scraper" id="getInfo" class="scrape">Get track info</label>
-								<input class="left" type="checkbox" id="scraper">
+						<div class="large-6 columns">
+							<div class="controls leftControls">
+								<a title="Add Directory to Playlist" class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></a><!-- Add Directory to Playlist -->
+								<a title="Download Directory" class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_181_download_alt.png" alt="" width="27" height="27"></a><!-- Download Directory -->
+								<div class="scraper">
+									<label for="scraper" id="getInfo" class="scrape">Get track info</label>
+									<input class="left" type="checkbox" id="scraper">
+								</div>
 							</div>
 						</div>
+					</div><!-- /libraryHeaderContainer -->
+
+					<div class="clear directoryTitle">
+						<a href="#" class="backButton"><img src="img/glyphicons/png/glyphicons_435_undo.png" alt="Back" width="15" height="15"></a>
+						<h4 class="directoryName">Current Directory Name</h4>
 					</div>
 				</div>
-
 				<div class='clear col' id='filelist'>
 					<div class="filez">Nothing Here...</div>
 				</div>
