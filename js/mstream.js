@@ -55,45 +55,61 @@ $(document).ready(function(){
 
 
 
-	$('#save_playlist').on('click', function(){
+	$('#save_playlist_form').on('submit', function(e){
+		e.preventDefault();
 		var playlistElements = $('ul#playlist li');
    		var playlistArray = jQuery.makeArray(playlistElements);
 
+   		var title = $('#playlist_name').val();
+
    		var stuff = [];
+
+   		// Check for special characters
+   		if(/^[a-zA-Z0-9-_ ]*$/.test(title) == false) {
+			console.log('do not do that');
+			return false;	
+		}
 
 		//loop through array and add each file to the playlist
 		$.each( playlistArray, function() {
 
 			stuff.push($(this).data('songurl'));
 
-
 		});
 
-console.log(stuff);
 
 		$.ajax({
 		  type: "POST",
 		  url: "savem3u.php",
-		  data: {stuff:stuff},
+		  data: {
+		  	title:title,
+		  	stuff:stuff
+		  },
 		})
 	    .done(function( msg ) {
-	      console.log(msg);
+	    	console.log(msg);
+
+	    	if(msg==1){
+	    	}
+	    	if(msg==0){
+
+	    		$('#playlist_list').append('<li><a data-filename="' + title + '.m3u">' + title + '</a></li>')
+	    	}
+
 	    });
 
-	    // Alert the user the playlsit has been saved
 
-	    //  Add playlist to the sidebar
 	});
 
 
 
 
 
-	$('#playlist_list li').on('click', function(){
+	$('#playlist_list').on('click', 'li', function(){
 		var filename = $(this).find('a').data('filename');
+	    var name = $(this).find('a').html();
 
-		console.log(filename);
-
+		// Make an AJAX call to get the contents of the playlist
 		$.ajax({
 		  type: "POST",
 		  url: "playlists/playlist_parser.php",
@@ -101,18 +117,19 @@ console.log(stuff);
 		  dataType: 'json',
 		})
 	    .done(function( msg ) {
-	    	console.log(msg);
 
-		$.each( msg, function(i ,item) {
+	    	$('#playlist_name').val(name);
 
-      		$('ul#playlist').append(
-			    $('<li/>', {
+
+			$.each( msg, function(i ,item) {
+
+      			$('ul#playlist').append(
+			    	$('<li/>', {
 			        'data-songurl': item,
-			        'class': 'dragable',
-			        html: '<span class="play1">'+item+'</span><a href="javascript:void(0)" class="closeit">X</a>'
-			    })
-			);
-		});
+			        	'class': 'dragable',
+			    	    html: '<span class="play1">'+item+'</span><a href="javascript:void(0)" class="closeit">X</a>'
+			    }));
+			});
 
 
 
@@ -181,6 +198,8 @@ console.log(stuff);
 // clear the playlist
 	$("#clear").click(function() {
 		$('#playlist').empty();
+	    $('#playlist_name').val('');
+
 	});
 
 // Download Directory  

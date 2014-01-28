@@ -1,24 +1,23 @@
 <?php
 
-// file_put_contents('playlists/newplaylist.m3u', 'efwefwef';
+// Varz
+$title = $_POST['title'];
+$is_there_a_file_there = 0;
 
 
+// Check for special characters
+$pattern = '/^[a-zA-Z0-9-_ ]*$/';
+if(!preg_match($pattern, $title)) {
+	echo 'bad user';exit;
+}
+
+// Check if file exists
+if(file_exists('playlists/' . $title . '.m3u')){
+	$is_there_a_file_there = 1;
+}
 
 
-// function generatem3u(){
-// 	foreach($_POST['stuff'] as $post_it) {
-// 		print_r($post_it);
-
-// 		print_r( '\n');
-
-// 	}
-// }
-
-
-
-
-
-$myFile = "playlists/newplaylist.m3u";
+$myFile = "playlists/".$title.".m3u";
 $fh = fopen($myFile, 'w') or die("can't open file");
 
 
@@ -31,6 +30,8 @@ foreach($_POST['stuff'] as $post_it) {
 
 
 fclose($fh);
+
+echo $is_there_a_file_there;
 
 
 ?>

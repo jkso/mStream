@@ -34,8 +34,10 @@
 <!-- Size Classes: [small medium large xlarge expand] -->
 <div id="savePlaylist" class="reveal-modal small" data-reveal>
   <h2>Save Playlist</h2>
-  <input type="text" required placeholder="Enter your playlist name">
-  <input type="submit" class="button small" value="Save Playlist">
+  	<form id="save_playlist_form">
+	  <input id="playlist_name" type="text" required placeholder="Enter your playlist name" pattern="[a-zA-Z0-9 _-]+">
+	  <input id="save_playlist" type="submit" class="button small" value="Save Playlist">
+	</form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
@@ -72,7 +74,7 @@
       	foreach ($playlists as $key => $playlist) {
       		# 
       		if(substr($playlist, -3)=='m3u'){
-      			echo '<li><a data-filename="' . $playlist . '">' . $playlist . '</a></li>' . "\n";
+      			echo '<li><a data-filename="' . $playlist . '">' . substr($playlist, 0, -4) . '</a></li>' . "\n";
       		}
       	}
 
@@ -116,7 +118,7 @@
 						<div class="controls">
 							<a title="Clear Playlist" class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></a><!-- Clear Playlist -->
 							<a title="Download Playlist" class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_181_download_alt.png" width="27" height="27"></a><!-- Download Playlist -->
-							<a title="Save Playlist" class="save" data-reveal-id="savePlaylist" id="save_playlist"><img src="img/glyphicons/png/glyphicons_443_floppy_disk.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
+							<a title="Save Playlist" class="save" data-reveal-id="savePlaylist" ><img src="img/glyphicons/png/glyphicons_443_floppy_disk.png" alt="" width="27" height="27"></a><!-- Save Playlist -->
 						</div>
 					</div>
 				</div>
@@ -188,7 +190,7 @@
       $(document).foundation();
     </script>
     <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function() {
     	$('a#getInfo').click(function(){
     		$('input[type=checkbox]').trigger('click'); 
     	}
