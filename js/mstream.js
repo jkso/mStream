@@ -20,6 +20,8 @@ $(document).ready(function(){
 	//send this directory to be parsed and displayed
 	senddir(startdir);
 
+	$('.directoryName').html(startdir);
+
 
 
 // when you click an mp3, add it to the playlist
@@ -162,13 +164,15 @@ $(document).ready(function(){
 
 		//update the hidden fileds with the new location
 		$('#currentdir').val(location);
+		$('.directoryName').html(location);
+
 
 		//pass this value along
 		senddir(location);
 	});
 
 // when you click the back directory
-	$("#filelist").on('click', 'div.back', function() {
+	$(".backButton").on('click', function() {
 		if($('#currentdir').val() != startdir){
 			//get the html of that class
 			var curdirshort=$('#currentdir').val();
@@ -185,6 +189,8 @@ $(document).ready(function(){
 			}
 
 			$('#currentdir').val(builddir);
+			$('.directoryName').html(builddir);
+
 
 			senddir(location);
 		}
@@ -270,7 +276,10 @@ $(document).ready(function(){
 
 		//add a listing to go back
 		if($('#currentdir').val() != startdir){
-			filelist.push('<div id=".." class="back">..</div>');
+			// filelist.push('<div id=".." class="back">..</div>');
+			$('.backButton').prop('disabled', false);
+		}else{
+			$('.backButton').prop('disabled', true);
 		}
 
 		$('#filelist').html(filelist);

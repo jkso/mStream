@@ -106,7 +106,7 @@
 					</div><!-- /libraryHeaderContainer -->
 
 					<div class="clear directoryTitle">
-						<a href="#" class="backButton"><img src="img/glyphicons/png/glyphicons_435_undo.png" alt="Back" width="15" height="15"></a>
+						<button disabled class="backButton tiny"><img src="img/glyphicons/png/glyphicons_435_undo.png" alt="Back" width="15" height="15"></button>
 						<h4 class="directoryName">Current Directory Name</h4>
 					</div>
 				</div>
