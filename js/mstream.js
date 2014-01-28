@@ -87,7 +87,6 @@ $(document).ready(function(){
 		  },
 		})
 	    .done(function( msg ) {
-	    	console.log(msg);
 
 	    	if(msg==1){
 	    	}
@@ -105,7 +104,7 @@ $(document).ready(function(){
 
 
 
-	$('#playlist_list').on('click', 'li', function(){
+	$('#playlist_list').on('dblclick', 'li', function(){
 		var filename = $(this).find('a').data('filename');
 	    var name = $(this).find('a').html();
 
@@ -117,12 +116,14 @@ $(document).ready(function(){
 		  dataType: 'json',
 		})
 	    .done(function( msg ) {
-
+	    	// Add the playlist name to the modal
 	    	$('#playlist_name').val(name);
 
+	    	// Clear the playlist
+			$('#playlist').empty();
 
+	    	// Append the playlist items to the playlist
 			$.each( msg, function(i ,item) {
-
       			$('ul#playlist').append(
 			    	$('<li/>', {
 			        'data-songurl': item,
@@ -130,8 +131,6 @@ $(document).ready(function(){
 			    	    html: '<span class="play1">'+item+'</span><a href="javascript:void(0)" class="closeit">X</a>'
 			    }));
 			});
-
-
 
 
 			$('#playlist').sortable();
