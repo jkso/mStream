@@ -57,7 +57,7 @@
       </section>
 
       <section class="right tab-bar-section">
-        <h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto"></h1>
+        <h1 class="title"><img src="img/mstream-logo.jpg" class="logo" alt="MStream" width="181" height="auto"></h1>
       </section>
 
     </nav>
@@ -85,15 +85,22 @@
     <section class="main-section">
       <!-- content goes in here -->
 		<div class="row">
-			<div class="large-6 columns libraryColumn">
+
+		<dl class="tabs hide-for-medium-up" data-tab>
+		  <dd class="active"><a href="#panel1">Library</a></dd>
+		  <dd><a href="#panel2">Playlist</a></dd>
+		</dl>
+		<div class="tabs-content">
+		  <div class="content active" id="panel1">
+			<div class="large-12 columns libraryColumn">
 				<div class="columnHeader">
 					
 					<div class="libraryHeaderContainer">
-						<div class="large-6 columns noPaddingLeft">
-							<h3>Library</h3>
+						<div class="large-6 small-12 columns noPaddingLeft">
+							<h3 class="hide-for-small">Library</h3>
 						</div>
 
-						<div class="large-6 columns">
+						<div class="large-6 small-12 columns">
 							<div class="controls leftControls">
 								<a title="Add Directory to Playlist" class="add" id='addall'><img src="img/glyphicons/png/glyphicons_131_inbox_plus.png" alt="" width="27" height="27"></a><!-- Add Directory to Playlist -->
 								<a title="Download Directory" class="downloadDirectory" id='download'><img src="img/glyphicons/png/glyphicons_181_download_alt.png" alt="" width="27" height="27"></a><!-- Download Directory -->
@@ -113,15 +120,15 @@
 				<div class='clear col' id='filelist'>
 					<div class="filez">Nothing Here...</div>
 				</div>
-			</div><!-- /6 columns -->
-			
-			<div class="large-6 columns playlistColumn" id="playlist_container" >
+			</div><!-- /6 columns -->		  </div>
+		  <div class="content" id="panel2">
+			<div class="large-12 columns playlistColumn" id="playlist_container" >
 				<div class="columnHeader">
-					<div class="large-6 columns noPaddingLeft">
-						<h3>Playlist</h3>
+					<div class="large-6 small-12 columns noPaddingLeft">
+						<h3 class="hide-for-small">Playlist</h3>
 					</div>
 
-					<div class="large-6 columns">
+					<div class="large-6 small-12 columns">
 						<div class="controls">
 							<a title="Clear Playlist" class="clear" id='clear'><img src="img/glyphicons/png/glyphicons_192_circle_remove.png" alt="" width="27" height="27"></a><!-- Clear Playlist -->
 							<a title="Download Playlist" class="downloadPlaylist" id="downloadPlaylist"><img src="img/glyphicons/png/glyphicons_181_download_alt.png" width="27" height="27"></a><!-- Download Playlist -->
@@ -133,7 +140,13 @@
 					<ul class="clear" id="playlist"></ul>
 				</div>
 
-			</div>
+			</div><!--/6 cols-->
+		  </div>
+		</div>
+
+			
+			
+			
 		</div>
 		<!-- /row -->
 				

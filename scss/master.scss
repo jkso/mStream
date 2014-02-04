@@ -1,3 +1,18 @@
+@mixin bp($point) {
+  @if $point == monitor {
+    @media (min-width: 769px) { @content; }
+  }
+  @else if $point == ipad {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $point == phone {
+    @media (max-width: 720px)  { @content; }
+  }
+  @else if $point == iphone {
+    @media (max-width: 320px)  { @content; }
+  }
+}
+
 body, html{
 	height: 100%;
 }
@@ -37,7 +52,7 @@ right:25px;
 	-moz-border-radius: 0 0 3px 3px;
 	border-radius: 0 0 3px 3px;
 	position: relative;
-z-index: 3;
+	z-index: 3;
 }
 
 .masterlist{
@@ -141,9 +156,12 @@ ul.jp-controls{
 .playlistColumn{
 	@extend .libraryColumn;
 	margin-left: 1%;
-	width: 49%;
+	width: 100%;
 	li{
 		padding:0!important;
+	}
+	@include bp(phone){
+		margin-left:0;
 	}
 }
 
@@ -260,6 +278,11 @@ h3{
 	&:hover{
 		color: #555;
 	}
+	@include bp(phone){
+		position: absolute;
+		margin-left: -20px;
+		margin-top: 8px;
+	}
 }
 
 .jp-current-time{
@@ -279,4 +302,49 @@ h3{
 	padding: 10px;
 	width: 95%;
 	float: left;
+}
+
+// Tabs
+
+.content{
+	@include bp(monitor){
+		width: 50%;
+		height: 100%;
+		display:inline-block;
+		float:left;
+	}
+}
+
+.tabs-content > .content{
+	@include bp(monitor){
+		padding:0;
+		display:inline-block!important;
+	}
+	@include bp(phone){
+		width:100%;
+	}
+}
+
+.tabs dd{
+	width: 50%;
+	border: 1px solid #CFCFCF;
+	font-size: 20px;
+	font-weight: 500;
+	color: rgb(90, 90, 90);
+	&:first-child{
+		border-right: 0;
+	}
+	&:last-child{
+		border-left: 0;
+	}
+}
+
+.tabs-content{
+		height:100%;
+}
+
+dl.tabs{
+	@include bp(ipad){
+		display:none;
+	}
 }
