@@ -20,7 +20,7 @@ $(document).ready(function(){
 	//send this directory to be parsed and displayed
 	senddir(startdir);
 
-	$('.directoryName').html(startdir);
+	$('.directoryName').html('/');
 
 
 
@@ -105,8 +105,8 @@ $(document).ready(function(){
 
 
 
-
-	$('#playlist_list').on('dblclick', 'li', function(){
+	// load up a playlist
+	$('#playlist_list').on('click', 'li', function(){
 		var filename = $(this).find('a').data('filename');
 	    var name = $(this).find('a').html();
 
@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 		//update the hidden fileds with the new location
 		$('#currentdir').val(location);
-		$('.directoryName').html(location);
+		$('.directoryName').html('/' + location.replace(startdir, ''));
 
 
 		//pass this value along
@@ -189,7 +189,7 @@ $(document).ready(function(){
 			}
 
 			$('#currentdir').val(builddir);
-			$('.directoryName').html(builddir);
+			$('.directoryName').html('/' + builddir.replace(startdir, ''));
 
 
 			senddir(location);
