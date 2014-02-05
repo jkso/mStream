@@ -113,7 +113,7 @@
 					</div><!-- /libraryHeaderContainer -->
 
 					<div class="clear directoryTitle">
-						<button disabled class="backButton tiny"><img src="img/glyphicons/png/glyphicons_435_undo.png" alt="Back" width="15" height="15"></button>
+						<button disabled class="backButton tiny"><img src="img/glyphicons/png/glyphicons_435_undo.png" alt="Back" width="22" height="22"></button>
 						<h4 class="directoryName">Current Directory Name</h4>
 					</div>
 				</div>
