@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mstream Media Player - All your media. Everywhere you go.</title>
     <?php include('includes/assets.inc.php'); ?>
+    <script type="text/javascript" src="js/foundation/foundation.clearing.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
     <nav class="tab-bar">
 
       <section class="left-small">
-        <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+        <a class="left-off-canvas-toggle menu-icon"><span></span></a>
       </section>
 
       <section class="right tab-bar-section">
@@ -50,7 +51,6 @@
 
     <!-- Off Canvas Menu -->
     <aside class="left-off-canvas-menu">
-
 
       <ul class="off-canvas-list" id="playlist_list">
       	<li><a href="photo_stream.php">Photo Stream</a></li>
@@ -112,7 +112,7 @@
 			<div class="large-12 columns playlistColumn" id="playlist_container" >
 				<div class="columnHeader">
 					<div class="large-6 small-12 columns noPaddingLeft">
-						<h3 class="hide-for-small">Custom Album</h3>
+						<h3 class="hide-for-small">Playlist</h3>
 					</div>
 
 					<div class="large-6 small-12 columns">
@@ -123,8 +123,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="clear col">
-					<ul class="clear" id="playlist"></ul>
+				<div class="clear col thumbnails">
+					<ul class="clearing-thumbs" data-clearing>
+					  <li class="left"><a href="img/photosamples/imgres-1.jpg"><img width="100" height="100" src="img/photosamples/imgres-1.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-2.jpg"><img width="100" height="100" src="img/photosamples/imgres-2.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-3.jpg"><img width="100" height="100" src="img/photosamples/imgres-3.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres.jpg"><img width="100" height="100" src="img/photosamples/imgres.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-1.jpg"><img width="100" height="100" src="img/photosamples/imgres-1.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-2.jpg"><img width="100" height="100" src="img/photosamples/imgres-2.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-3.jpg"><img width="100" height="100" src="img/photosamples/imgres-3.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres.jpg"><img width="100" height="100" src="img/photosamples/imgres.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-1.jpg"><img width="100" height="100" src="img/photosamples/imgres-1.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-2.jpg"><img width="100" height="100" src="img/photosamples/imgres-2.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres-3.jpg"><img width="100" height="100" src="img/photosamples/imgres-3.jpg"></a></li>
+					  <li class="left"><a href="img/photosamples/imgres.jpg"><img width="100" height="100" src="img/photosamples/imgres.jpg"></a></li>
+					</ul>
 				</div>
 
 			</div><!--/6 cols-->
