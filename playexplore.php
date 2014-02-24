@@ -13,6 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mstream Media Player - All your media. Everywhere you go.</title>
     <?php include('includes/assets.inc.php'); ?>
+<style>
+.current
+{
+background-color: #E6EBFA !important;
+}
+</style>
 </head>
 
 <body>
