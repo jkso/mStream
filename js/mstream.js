@@ -54,8 +54,8 @@ $(document).ready(function(){
 		$('ul#playlist').append(
 		    $('<li/>', {
 		        'data-songurl': mp3location,
-		        'class': 'dragable',
-		        html: '<span class="play1' + current + '">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
+		        'class': 'dragable' + current,
+		        html: '<span class="play1">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
 		    })
 		);
 
