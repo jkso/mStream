@@ -40,12 +40,22 @@ $(document).ready(function(){
 			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
 		var mp3location = directory+filename;
 
+		var current = '';
+
+		if ($('#playlist li').length == 0){
+			current = ' current';
+			$('#jquery_jplayer_1').jPlayer("setMedia", {
+				mp3: escape(mp3location),
+			});
+			// $('#jquery_jplayer_1').jPlayer("play");
+		}
+
 
 		$('ul#playlist').append(
 		    $('<li/>', {
 		        'data-songurl': mp3location,
 		        'class': 'dragable',
-		        html: '<span class="play1">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
+		        html: '<span class="play1' + current + '">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
 		    })
 		);
 
