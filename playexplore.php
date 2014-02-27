@@ -11,6 +11,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta content="yes" name="mobile-web-app-capable">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+
     <title>Mstream Media Player - All your media. Everywhere you go.</title>
     <?php include('includes/assets.inc.php'); ?>
 <style>
