@@ -21,6 +21,11 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon/apple-touch-icon-120x120.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon/apple-touch-icon-152x152.png">
 
+	<link rel="shortcut icon" sizes="120x120" href="img/apple-icon/apple-touch-icon-120x120.png">
+
+
+	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+
     <title>Mstream Media Player - All your media. Everywhere you go.</title>
     <?php include('includes/assets.inc.php'); ?>
 <style>
