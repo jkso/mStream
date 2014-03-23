@@ -23,6 +23,101 @@ $(document).ready(function(){
 	$('.directoryName').html('/');
 
 
+// Load up the file explorer
+	$('#file_explorer').on('click', function(){
+		//set a hidden input to the curent directory values
+		$('#currentdir').val(startdir);
+		//send this directory to be parsed and displayed
+		senddir(startdir);
+
+		$('.directoryName').html('/');
+
+		$('.directoryTitle').show();
+
+	});
+
+// Load up album explorer
+	$('#all_albums').on('click', function(){
+
+		$('.directoryTitle').hide();
+
+		var request = $.ajax({
+			url: "db_scripts/find_all_albums.php",
+			type: "GET"
+		});
+			 
+		request.done(function( msg ) {
+
+			var dirty = $.parseJSON(msg);
+
+			//clear the list
+			$('#filelist').empty();
+
+			//parse through the json array and make an array of corresponding divs
+			var albums = [];
+			$.each(dirty, function() {
+				albums.push('<div data-album="'+this.album+'" class="albumz">'+this.album+' ['+this.artist +']</div>');
+			});
+
+
+			$('#filelist').html(albums);
+
+		});
+			 
+		request.fail(function( jqXHR, textStatus ) {
+			alert( "Request failed: " + textStatus );
+		});
+
+	});
+
+
+
+
+// Load up album-songs
+	$("#filelist").on('click', 'div.albumz', function() {
+
+		console.log($(this).data('album'));
+		var album = $(this).data('album');
+
+
+		$('.directoryTitle').hide();
+
+		var request = $.ajax({
+			url: "db_scripts/find_all_albums-songs.php",
+			type: "POST",
+			data: { album : album },
+			// dataType: "html"
+		});
+			 
+		request.done(function( msg ) {
+			console.log(msg);
+			// var dirty = $.parseJSON(msg);
+
+			// //clear the list
+			// $('#filelist').empty();
+
+			// //parse through the json array and make an array of corresponding divs
+			// var albums = [];
+			// $.each(dirty, function() {
+			// 	albums.push('<div id="'+this.album+'" class="albumz">'+this.album+' ['+this.artist +']</div>');
+			// });
+
+
+			// $('#filelist').html(albums);
+
+		});
+			 
+		request.fail(function( jqXHR, textStatus ) {
+			alert( "Request failed: " + textStatus );
+		});
+
+	});
+
+
+
+
+
+
 
 // when you click an mp3, add it to the playlist
 	$("#filelist").on('click', 'div.filez', function() {

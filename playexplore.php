@@ -64,7 +64,7 @@ background-color: #E6EBFA !important;
       </section>
 
       <section class="right tab-bar-section">
-        <h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto"></h1>
+      	<h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto">&nbsp;&nbsp;<span id="file_explorer">Files</span>&nbsp;&nbsp;<span id="all_albums">Albums</span></h1>
       </section>
 
     </nav>
