@@ -4,26 +4,8 @@ require_once('../id3/getid3/getid3.php');
 $getID3 = new getID3;
 
 
-//  Medoo!
-require_once('../medoo.min.php');
+require_once('../config/medoo-conf.php');
 
-// configure medoo
-$database = new medoo([
-	// required
-	'database_type' => 'mysql',
-	'database_name' => 'mstream',
-	'server' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
- 
-	// optional
-	'port' => 3306,
-	'charset' => 'utf8',
-	// driver_option for connection, read more from http://www.php.net/manual/en/pdo.setattribute.php
-	'option' => [
-		PDO::ATTR_CASE => PDO::CASE_NATURAL
-	]
-]); 
 
 
 
@@ -72,6 +54,16 @@ try{
 	// TODO: restore backup table
 	//TODO: Log Error
 }
+
+
+
+
+//TODO: Create cache tables
+
+
+
+
+
 
 
 
