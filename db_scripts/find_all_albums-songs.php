@@ -30,7 +30,7 @@ foreach ($results as $result) {
 		$push_this['title'] = $result['title'];
 	}
 
-	$push_this['file_location'] = $result['file_location'];
+	$push_this['file_location'] = substr($result['file_location'], 3); //$result['file_location'];
 
 
 	array_push($songs, $push_this);

@@ -76,7 +76,6 @@ $(document).ready(function(){
 // Load up album-songs
 	$("#filelist").on('click', 'div.albumz', function() {
 
-		console.log($(this).data('album'));
 		var album = $(this).data('album');
 
 
@@ -90,20 +89,30 @@ $(document).ready(function(){
 		});
 			 
 		request.done(function( msg ) {
-			console.log(msg);
-			// var dirty = $.parseJSON(msg);
 
-			// //clear the list
-			// $('#filelist').empty();
-
-			// //parse through the json array and make an array of corresponding divs
-			// var albums = [];
-			// $.each(dirty, function() {
-			// 	albums.push('<div id="'+this.album+'" class="albumz">'+this.album+' ['+this.artist +']</div>');
-			// });
+			var dirty = $.parseJSON(msg);
+			console.log(dirty);
 
 
-			// $('#filelist').html(albums);
+			//clear the list
+			$('#filelist').empty();
+
+
+			//parse through the json array and make an array of corresponding divs
+			var filelist = [];
+			$.each(dirty, function() {
+				if(this.title==null){
+					filelist.push('<div data-file_location="'+this.file_location+'" class="filez2"><span class="pre-char">&#9836;</span> <span class="title">[MISSING TITLE]</span></div>');
+				}
+				else{
+					filelist.push('<div data-file_location="'+this.file_location+'" class="filez2"><span class="pre-char">&#9835;</span> <span class="title">'+this.title+'</span></div>');
+				}
+
+			});
+
+
+
+			$('#filelist').html(filelist);
 
 		});
 			 
@@ -149,6 +158,53 @@ $(document).ready(function(){
 		$('ul#playlist').append(
 		    $('<li/>', {
 		        'data-songurl': mp3location,
+		        'class': 'dragable' + current,
+		        html: '<span class="play1">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
+		    })
+		);
+
+		$('#playlist').sortable();
+
+	}
+
+
+
+
+
+
+
+// when you click an mp3, add it to the playlist
+	$("#filelist").on('click', 'div.filez2', function() {
+
+		addFile2(this);
+
+	});
+
+// Adds file to playlist
+	function addFile2(that){
+		var filename = $(that).attr("id");
+var file_location = $(that).data("file_location");
+
+		var title = $(that).find('span.title').html();
+		var directory=$('#currentdir').val();
+		//put these together to send to jPlayer
+			// Must use escape because some special characters (like: ?) cause jPlayer to spaz out
+		var mp3location = directory+filename;
+
+		var current = '';
+
+		if ($('#playlist li').length == 0){
+			current = ' current';
+			$('#jquery_jplayer_1').jPlayer("setMedia", {
+				mp3: escape(file_location),
+			});
+			// $('#jquery_jplayer_1').jPlayer("play");
+		}
+
+
+		$('ul#playlist').append(
+		    $('<li/>', {
+		        'data-songurl': file_location,
 		        'class': 'dragable' + current,
 		        html: '<span class="play1">'+title+'</span><a href="javascript:void(0)" class="closeit">X</a>'
 		    })
