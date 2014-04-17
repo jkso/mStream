@@ -133,7 +133,7 @@ background-color: #E6EBFA !important;
 			<div class="large-12 columns playlistColumn" id="playlist_container" >
 				<div class="columnHeader">
 					<div class="large-6 small-12 columns noPaddingLeft">
-						<h3 class="hide-for-small">Custom Album</h3>
+						<h3 class="hide-for-small">Playlist</h3>
 					</div>
 
 					<div class="large-6 small-12 columns">
