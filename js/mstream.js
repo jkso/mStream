@@ -13,14 +13,27 @@ $(document).ready(function(){
 		// audioFullScreen: true
 	});
 
+var startdir = false;
 
-// this code sets up the file browser.  It runs once when the page loads and is never used again
-	//set a hidden input to the curent directory values
-	$('#currentdir').val(startdir);
-	//send this directory to be parsed and displayed
-	senddir(startdir);
+$.getJSON("config/editme.json",function(result){
 
-	$('.directoryName').html('/');
+		startdir = result.startdir;
+
+		console.log(startdir);
+
+		// this code sets up the file browser.  It runs once when the page loads and is never used again
+			//set a hidden input to the curent directory values
+			$('#currentdir').val(startdir);
+			//send this directory to be parsed and displayed
+			senddir(startdir);
+
+			$('.directoryName').html('/');
+
+  });
+
+
+
+
 
 
 // Load up the file explorer
@@ -45,7 +58,7 @@ $(document).ready(function(){
 			url: "db_scripts/find_all_albums.php",
 			type: "GET"
 		});
-			 
+
 		request.done(function( msg ) {
 
 			var dirty = $.parseJSON(msg);
@@ -63,7 +76,7 @@ $(document).ready(function(){
 			$('#filelist').html(albums);
 
 		});
-			 
+
 		request.fail(function( jqXHR, textStatus ) {
 			alert( "Request failed: " + textStatus );
 		});
@@ -87,7 +100,7 @@ $(document).ready(function(){
 			data: { album : album },
 			// dataType: "html"
 		});
-			 
+
 		request.done(function( msg ) {
 
 			var dirty = $.parseJSON(msg);
@@ -115,7 +128,7 @@ $(document).ready(function(){
 			$('#filelist').html(filelist);
 
 		});
-			 
+
 		request.fail(function( jqXHR, textStatus ) {
 			alert( "Request failed: " + textStatus );
 		});
@@ -368,7 +381,7 @@ var file_location = $(that).data("file_location");
 
 	});
 
-// Download Directory  
+// Download Directory
 // Downloads uses hidden iframe
 	$("#download").click(function() {
 		var dirz = encodeURIComponent( $('#currentdir').val() );
@@ -450,7 +463,7 @@ var file_location = $(that).data("file_location");
 
 
 
-/////////////////////   The Following Code is for the playlist 
+/////////////////////   The Following Code is for the playlist
 
 
 	// Core playlist functionality.  When a song ends, go to the next song
@@ -487,7 +500,7 @@ var file_location = $(that).data("file_location");
 	// When an item in the playlist is clicked, start playing that song
 	$('#playlist').on( 'click', 'li span', function() {
 		var mp3 = $(this).parent().data('songurl');
-		
+
 		$('#playlist li').removeClass('current');
 		$(this).parent().addClass('current');
 
@@ -500,4 +513,3 @@ var file_location = $(that).data("file_location");
 
 
 });
-
