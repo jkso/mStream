@@ -1,7 +1,6 @@
 <?php
 
-//  Medoo!
-require_once('../medoo.min.php');
+
 
 // configure medoo
 $database = new medoo([
@@ -11,7 +10,7 @@ $database = new medoo([
 	'server' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
- 
+
 	// optional
 	'port' => 3306,
 	'charset' => 'utf8',
@@ -19,7 +18,7 @@ $database = new medoo([
 	'option' => [
 		PDO::ATTR_CASE => PDO::CASE_NATURAL
 	]
-]); 
+]);
 
 
 ?>

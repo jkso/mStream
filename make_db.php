@@ -1,30 +1,30 @@
 <?php
 // Setup getID3
-require_once('../id3/getid3/getid3.php');
+require_once('id3/getid3/getid3.php');
 $getID3 = new getID3;
 
-
-require_once('../config/medoo-conf.php');
-
-
-
+//  Medoo!
+require_once('medoo.min.php');
+require_once('config/medoo-conf.php');
 
 
 
 
 
 
+
+//
 // // Backup Files Table
 // $table_name = "files";
 // $backup_file  = "mp3db_backup.sql";
 // $sql = "SELECT * INTO OUTFILE '$backup_file' FROM $table_name";
 // $database->query($sql);
 // var_dump($database->error());
-
+//
 // var_dump($database->error());
 // echo 'yo';
 // exit;
-
+//
 
 
 
@@ -48,8 +48,11 @@ $database->query($sql);
 
 // Make the database
 try{
-	$dir='../audiofiles/';
-	scan_dir($dir, $getID3, $database);	
+	$json = json_decode(file_get_contents('config/editme.json'), true);
+
+	$dir = $json['startdir'];
+
+	scan_dir($dir, $getID3, $database);
 }catch(Exception $e){
 	// TODO: restore backup table
 	//TODO: Log Error
@@ -69,7 +72,7 @@ try{
 
 
 // The majority of the following function was written while under the influence
-function scan_dir($dir, $getID3, $database){	
+function scan_dir($dir, $getID3, $database){
 	// Setup arrays
 	$more_dirs = array();
 	$mp3s = array();
@@ -83,7 +86,7 @@ function scan_dir($dir, $getID3, $database){
 			continue;
 		}
 
-		// 
+		//
 		if(is_dir($dir.$file)){
 			array_push($more_dirs, $dir.$file);
 
@@ -93,7 +96,7 @@ function scan_dir($dir, $getID3, $database){
 		if(substr($file, -3)=='mp3'){
 
 			$mp3_info = array();
-			
+
 			$filename=$dir.$file;
 
 			// Debug code

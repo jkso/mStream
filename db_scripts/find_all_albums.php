@@ -1,6 +1,7 @@
 <?php
 
-
+//  Medoo!
+require_once('../medoo.min.php');
 require_once('../config/medoo-conf.php');
 
 
@@ -29,4 +30,3 @@ foreach ($results as $result) {
 
 
 echo json_encode($albums);
-
