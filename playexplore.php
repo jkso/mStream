@@ -45,7 +45,7 @@ background-color: #E6EBFA !important;
 	  <input id="playlist_name" type="text" required placeholder="Enter your playlist name" pattern="[a-zA-Z0-9 _-]+">
 	  <input id="save_playlist" type="submit" class="button small" value="Save Playlist">
 	</form>
-  <a class="close-reveal-modal">&#215;</a>
+  <a id="close_save_playlist" class="close-reveal-modal">&#215;</a>
 </div>
 
 	<input type="hidden" id="currentdir"></input>

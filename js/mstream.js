@@ -1,4 +1,4 @@
-$(document).ready(function(){   
+$(document).ready(function(){
 
 
 // Setup jPlayer
@@ -264,6 +264,9 @@ var file_location = $(that).data("file_location");
 
 	$('#save_playlist_form').on('submit', function(e){
 		e.preventDefault();
+
+		$('#save_playlist').prop("disabled",true);
+
 		var playlistElements = $('ul#playlist li');
    		var playlistArray = jQuery.makeArray(playlistElements);
 
@@ -301,7 +304,9 @@ var file_location = $(that).data("file_location");
 
 	    		// $('#playlist_list').append('<li><a data-filename="' + title + '.m3u">' + title + '</a></li>')
 	    	}
+				$('#save_playlist').prop("disabled",false);
 
+				$('#close_save_playlist').trigger("click");
 	    });
 
 
