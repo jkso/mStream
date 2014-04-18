@@ -15,7 +15,7 @@
     <meta content="yes" name="mobile-web-app-capable">
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black" name="apple-mobile-web-app-status-bar-style">
-	
+
 	<link rel="apple-touch-icon" href="img/apple-icon/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon/apple-touch-icon-76x76.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon/apple-touch-icon-120x120.png">
@@ -49,10 +49,10 @@ background-color: #E6EBFA !important;
 </div>
 
 	<input type="hidden" id="currentdir"></input>
-	
-	<form id="downform" action="zipplaylist.php" target="frameframe" method="POST">  
-	</form>  
-	
+
+	<form id="downform" action="zipplaylist.php" target="frameframe" method="POST">
+	</form>
+
 	<iframe id="downframe" src="" width="0" height="0" tabindex="-1" title="empty" class="hidden" hidden name="frameframe"></iframe>
 
 	<div class="off-canvas-wrap">
@@ -64,7 +64,7 @@ background-color: #E6EBFA !important;
       </section>
 
       <section class="right tab-bar-section">
-      	<h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto">&nbsp;&nbsp;<span id="file_explorer">Files</span>&nbsp;&nbsp;<span id="all_albums">Albums</span></h1>
+      	<h1 class="title"><img src="img/mstream-logo.png" class="logo" alt="MStream" width="181" height="auto"></h1>
       </section>
 
     </nav>
@@ -74,19 +74,10 @@ background-color: #E6EBFA !important;
 
 
       <ul class="off-canvas-list" id="playlist_list">
-      	<li><a href="photo_stream.php">Photo Stream</a></li>
-      	<li><label>Playlists</label></li>
-      	<?php 
-      	$playlists = scandir('playlists/');
-
-      	foreach ($playlists as $key => $playlist) {
-      		# 
-      		if(substr($playlist, -3)=='m3u'){
-      			echo '<li><a data-filename="' . $playlist . '">' . substr($playlist, 0, -4) . '</a></li>' . "\n";
-      		}
-      	}
-
-      	?>
+<!--       	<li><a href="photo_stream.php">Photo Stream</a></li> -->
+				<li id="file_explorer"><label>File Explorer</label></li>
+				<li id="all_playlists"><label>Playlists</label></li>
+				<li id="all_albums"><label>Albums</label></li>
       </ul>
     </aside>
 
@@ -102,7 +93,7 @@ background-color: #E6EBFA !important;
 		  <div class="content active" id="panel1">
 			<div class="large-12 columns libraryColumn">
 				<div class="columnHeader">
-					
+
 					<div class="libraryHeaderContainer">
 						<div class="large-6 small-12 columns noPaddingLeft">
 							<h3 class="hide-for-small">Library</h3>
@@ -152,12 +143,12 @@ background-color: #E6EBFA !important;
 		  </div>
 		</div>
 
-			
-			
-			
+
+
+
 		</div>
 		<!-- /row -->
-				
+
 
 			<div class="jplay col">
 				<div class ="row">
@@ -220,7 +211,7 @@ background-color: #E6EBFA !important;
     <script>
     $(document).ready(function() {
     	$('a#getInfo').click(function(){
-    		$('input[type=checkbox]').trigger('click'); 
+    		$('input[type=checkbox]').trigger('click');
     	}
     });
     </script>

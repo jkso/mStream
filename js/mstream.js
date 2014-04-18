@@ -83,7 +83,39 @@ $.getJSON("config/editme.json",function(result){
 
 	});
 
+// Load up playlists
+	$('#all_playlists').on('click', function(){
 
+		$('.directoryTitle').hide();
+
+		var request = $.ajax({
+			url: "playlists/get_playlists.php",
+			type: "GET"
+		});
+
+		request.done(function( msg ) {
+
+			var dirty = $.parseJSON(msg);
+
+			//clear the list
+			$('#filelist').empty();
+
+			//parse through the json array and make an array of corresponding divs
+			var albums = [];
+			$.each(dirty, function() {
+				albums.push('<div data-filename="'+this.file+'" class="playlistz">'+this.file+'</div>');
+			});
+
+
+			$('#filelist').html(albums);
+
+		});
+
+		request.fail(function( jqXHR, textStatus ) {
+			alert( "Request failed: " + textStatus );
+		});
+
+	});
 
 
 // Load up album-songs
@@ -134,7 +166,6 @@ $.getJSON("config/editme.json",function(result){
 		});
 
 	});
-
 
 
 
@@ -243,7 +274,7 @@ var file_location = $(that).data("file_location");
    		// Check for special characters
    		if(/^[a-zA-Z0-9-_ ]*$/.test(title) == false) {
 			console.log('do not do that');
-			return false;	
+			return false;
 		}
 
 		//loop through array and add each file to the playlist
@@ -268,7 +299,7 @@ var file_location = $(that).data("file_location");
 	    	}
 	    	if(msg==0){
 
-	    		$('#playlist_list').append('<li><a data-filename="' + title + '.m3u">' + title + '</a></li>')
+	    		// $('#playlist_list').append('<li><a data-filename="' + title + '.m3u">' + title + '</a></li>')
 	    	}
 
 	    });
@@ -280,9 +311,9 @@ var file_location = $(that).data("file_location");
 
 
 	// load up a playlist
-	$('#playlist_list').on('click', 'li', function(){
-		var filename = $(this).find('a').data('filename');
-	    var name = $(this).find('a').html();
+$("#filelist").on('click', 'div.playlistz', function() {
+		var filename = $(this).data('filename');
+	    var name = $(this).html();
 
 		// Make an AJAX call to get the contents of the playlist
 		$.ajax({
@@ -491,8 +522,8 @@ var file_location = $(that).data("file_location");
 					mp3: escape(song),
 				});
 				$(this).jPlayer("play");
-  			}	
-  			
+  			}
+
   		}
 	});
 
